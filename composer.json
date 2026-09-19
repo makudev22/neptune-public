@@ -35,9 +35,7 @@
       "src/pocketmine/CoreConstants.php",
       "src/pocketmine/GlobalConstants.php"
     ],
-    "psr-4": {
-      "": ["src/", "src/raklib/"]
-    }
+    "classmap": ["src/"]
   },
   "config": {
     "audit": {
