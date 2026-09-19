@@ -1,0 +1,114 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine;
+
+use pocketmine\nbt\tag\CompoundTag;
+use function strtolower;
+
+class OfflinePlayer implements IPlayer
+{
+	private string $name;
+	private Server $server;
+	private ?CompoundTag $namedtag = null;
+
+	public function __construct(Server $server, string $name)
+	{
+		$this->server = $server;
+		$this->name = $name;
+		if ($this->server->hasOfflinePlayerData($this->name)) {
+			$this->namedtag = $this->server->getOfflinePlayerData($this->name);
+		}
+	}
+
+	public function isOnline() : bool
+	{
+		return $this->getPlayer() !== null;
+	}
+
+	public function getName() : string
+	{
+		return $this->name;
+	}
+
+	public function getLowerCaseName() : string
+	{
+		return strtolower($this->name);
+	}
+
+	/**
+	 * @return Server
+	 */
+	public function getServer()
+	{
+		return $this->server;
+	}
+
+	public function isOp() : bool
+	{
+		return $this->server->isOp($this->name);
+	}
+
+	public function setOp(bool $value)
+	{
+		if ($value === $this->isOp()) {
+			return;
+		}
+
+		if ($value) {
+			$this->server->addOp($this->name);
+		} else {
+			$this->server->removeOp($this->name);
+		}
+	}
+
+	public function isBanned() : bool
+	{
+		return $this->server->getNameBans()->isBanned($this->name);
+	}
+
+	public function setBanned(bool $value)
+	{
+		if ($value) {
+			$this->server->getNameBans()->addBan($this->name, null, null, null);
+		} else {
+			$this->server->getNameBans()->remove($this->name);
+		}
+	}
+
+	public function isWhitelisted() : bool
+	{
+		return $this->server->isWhitelisted($this->name);
+	}
+
+	public function setWhitelisted(bool $value)
+	{
+		if ($value) {
+			$this->server->addWhitelist($this->name);
+		} else {
+			$this->server->removeWhitelist($this->name);
+		}
+	}
+
+	public function getPlayer()
+	{
+		return $this->server->getPlayerExact($this->name);
+	}
+
+	public function getFirstPlayed() : int
+	{
+		return $this->namedtag instanceof CompoundTag ? $this->namedtag->getLong("firstPlayed", 0, true) : 0;
+	}
+
+	public function getLastPlayed() : int
+	{
+		return $this->namedtag instanceof CompoundTag ? $this->namedtag->getLong("lastPlayed", 0, true) : 0;
+	}
+
+	public function hasPlayedBefore() : bool
+	{
+		return $this->namedtag instanceof CompoundTag;
+	}
+}

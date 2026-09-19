@@ -1,0 +1,74 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\command\defaults;
+
+use pocketmine\command\CommandSender;
+use pocketmine\command\utils\InvalidCommandSyntaxException;
+use pocketmine\lang\TranslationContainer;
+use pocketmine\network\mcpe\protocol\types\command\CommandEnum;
+use pocketmine\network\mcpe\protocol\types\command\CommandOverload;
+use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
+use pocketmine\permission\BanEntry;
+
+use function array_map;
+use function count;
+use function implode;
+use function sort;
+use function strtolower;
+
+use const SORT_STRING;
+
+class BanListCommand extends VanillaCommand
+{
+	public function __construct(string $name)
+	{
+		parent::__construct($name, "%pocketmine.command.banlist.description", "%commands.banlist.usage", [], [
+			new CommandOverload(false, [
+				CommandParameter::enum("args", new CommandEnum("banlist", [
+					"ip", "players"
+				]), 0)
+			])
+		]);
+		$this->setPermission("pocketmine.command.ban.list");
+	}
+
+	public function execute(CommandSender $sender, string $commandLabel, array $args)
+	{
+		if (!$this->testPermission($sender)) {
+			return true;
+		}
+
+		if (isset($args[0])) {
+			$args[0] = strtolower($args[0]);
+			if ($args[0] === "ips") {
+				$list = $sender->getServer()->getIPBans();
+			} elseif ($args[0] === "players") {
+				$list = $sender->getServer()->getNameBans();
+			} else {
+				throw new InvalidCommandSyntaxException();
+			}
+		} else {
+			$list = $sender->getServer()->getNameBans();
+			$args[0] = "players";
+		}
+
+		$list = array_map(function (BanEntry $entry) : string {
+			return $entry->getName();
+		}, $list->getEntries());
+		sort($list, SORT_STRING);
+		$message = implode(", ", $list);
+
+		if ($args[0] === "ips") {
+			$sender->sendMessage(new TranslationContainer("commands.banlist.ips", [count($list)]));
+		} else {
+			$sender->sendMessage(new TranslationContainer("commands.banlist.players", [count($list)]));
+		}
+
+		$sender->sendMessage($message);
+
+		return true;
+	}
+}

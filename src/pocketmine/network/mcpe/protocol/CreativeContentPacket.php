@@ -1,0 +1,90 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol;
+
+use pocketmine\network\mcpe\NetworkSession;
+use pocketmine\network\mcpe\protocol\types\inventory\CreativeGroupEntry;
+use pocketmine\network\mcpe\protocol\types\inventory\CreativeItemEntry;
+
+use function count;
+
+class CreativeContentPacket extends DataPacket
+{
+	public const NETWORK_ID = ProtocolInfo::CREATIVE_CONTENT_PACKET;
+
+	public const CATEGORY_CONSTRUCTION = 1;
+	public const CATEGORY_NATURE = 2;
+	public const CATEGORY_EQUIPMENT = 3;
+	public const CATEGORY_ITEMS = 4;
+
+	/** @var CreativeGroupEntry[] */
+	private array $groups;
+	/** @var CreativeItemEntry[] */
+	private array $items;
+
+	/**
+	 * @generate-create-func
+	 * @param CreativeGroupEntry[] $groups
+	 * @param CreativeItemEntry[]  $items
+	 */
+	public static function create(array $groups, array $items) : self
+	{
+		$result = new self();
+		$result->groups = $groups;
+		$result->items = $items;
+		return $result;
+	}
+
+	/** @return CreativeGroupEntry[] */
+	public function getGroups() : array
+	{
+		return $this->groups;
+	}
+
+	/** @return CreativeItemEntry[] */
+	public function getItems() : array
+	{
+		return $this->items;
+	}
+
+	protected function decodePayload() : void{
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_776) {
+			for ($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; ++$i) {
+				$this->groups[] = CreativeGroupEntry::read($this);
+			}
+		}
+
+		for ($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; ++$i) {
+			$this->items[] = CreativeItemEntry::read($this);
+		}
+	}
+
+	protected function encodePayload() : void
+	{
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_776) {
+			$this->putUnsignedVarInt(count($this->groups));
+			foreach ($this->groups as $entry) {
+				$entry->write($this);
+			}
+		}
+
+		$this->putUnsignedVarInt(count($this->items));
+		foreach ($this->items as $entry) {
+			$entry->write($this);
+		}
+	}
+
+	public function mustBeDecoded() : bool
+	{
+		return false;
+	}
+
+	public function handle(NetworkSession $session) : bool
+	{
+		return $session->handleCreativeContent($this);
+	}
+
+}

@@ -1,0 +1,68 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\command\defaults;
+
+use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+use pocketmine\command\utils\InvalidCommandSyntaxException;
+use pocketmine\lang\TranslationContainer;
+use pocketmine\level\Level;
+use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
+use pocketmine\network\mcpe\protocol\types\command\CommandEnum;
+use pocketmine\network\mcpe\protocol\types\command\CommandOverload;
+use pocketmine\network\mcpe\protocol\types\command\CommandParameter;
+
+use function count;
+
+class DifficultyCommand extends VanillaCommand
+{
+	public function __construct(string $name)
+	{
+		parent::__construct($name, "%pocketmine.command.difficulty.description", "%commands.difficulty.usage", [], [
+			new CommandOverload(false, [
+				CommandParameter::enum("difficulty", new CommandEnum("difficulty", [
+					"normal", "peaceful", "easy", "hard"
+				]), 0)
+			]),
+			new CommandOverload(false, [
+				CommandParameter::standard("difficulty", AvailableCommandsPacket::ARG_TYPE_INT)
+			])
+		]);
+		$this->setPermission("pocketmine.command.difficulty");
+	}
+
+	public function execute(CommandSender $sender, string $commandLabel, array $args)
+	{
+		if (!$this->testPermission($sender)) {
+			return true;
+		}
+
+		if (count($args) !== 1) {
+			throw new InvalidCommandSyntaxException();
+		}
+
+		$difficulty = Level::getDifficultyFromString($args[0]);
+
+		if ($sender->getServer()->isHardcore()) {
+			$difficulty = Level::DIFFICULTY_HARD;
+		}
+
+		if ($difficulty !== -1) {
+			$sender->getServer()->setConfigInt("difficulty", $difficulty);
+
+			//TODO: add per-world support
+			foreach ($sender->getServer()->getLevels() as $level) {
+				$level->setDifficulty($difficulty);
+			}
+
+			Command::broadcastCommandMessage($sender, new TranslationContainer("commands.difficulty.success", [$difficulty]));
+		} else {
+			throw new InvalidCommandSyntaxException();
+		}
+
+		return true;
+	}
+}

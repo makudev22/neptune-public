@@ -1,0 +1,218 @@
+[
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 279
+        },
+        "output": {
+            "id": 746
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 313
+        },
+        "output": {
+            "id": 751
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 311
+        },
+        "output": {
+            "id": 749
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 310
+        },
+        "output": {
+            "id": 748
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 293
+        },
+        "output": {
+            "id": 747
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 419
+        },
+        "output": {
+            "id": 989
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 312
+        },
+        "output": {
+            "id": 750
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 983
+        },
+        "output": {
+            "id": 990
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 278
+        },
+        "output": {
+            "id": 745
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 277
+        },
+        "output": {
+            "id": 744
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 984
+        },
+        "output": {
+            "id": 991
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 276
+        },
+        "output": {
+            "id": 743
+        },
+        "template": {
+            "damage": -1,
+            "id": 802
+        }
+    }
+]

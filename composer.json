@@ -1,0 +1,55 @@
+{
+  "name": "neptune/neptune",
+  "description": "Neptune — открытое ядро MC:BE.",
+  "type": "project",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/Benedikt05/NBT"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "adhocore/json-comment": "1.2.1",
+    "benedikt05/nbt": "3.0.1",
+    "brick/math": "0.18.0",
+    "fgrosse/phpasn1": "v2.5.0",
+    "firebase/php-jwt": "v7.1.0",
+    "phpseclib/phpseclib": "2.0.48",
+    "pocketmine/bedrock-block-upgrade-schema": "5.2.0",
+    "pocketmine/binaryutils": "0.1.13",
+    "pocketmine/callback-validator": "1.0.4",
+    "pocketmine/errorhandler": "0.7.1",
+    "pocketmine/log": "0.4.0",
+    "pocketmine/math": "1.0.0",
+    "pocketmine/spl": "0.4.2",
+    "ramsey/collection": "2.1.1",
+    "ramsey/uuid": "4.9.3",
+    "symfony/filesystem": "v6.2.12",
+    "symfony/polyfill-ctype": "v1.37.0",
+    "symfony/polyfill-mbstring": "v1.31.0"
+  },
+  "autoload": {
+    "files": [
+      "src/pocketmine/CoreConstants.php",
+      "src/pocketmine/GlobalConstants.php"
+    ],
+    "psr-4": {
+      "": ["src/", "src/raklib/"]
+    }
+  },
+  "config": {
+    "audit": {
+      "block-insecure": false
+    },
+    "sort-packages": true,
+    "platform": {
+      "php": "8.3.0"
+    }
+  },
+  "scripts": {
+    "build": "@php -d phar.readonly=0 tools/build-phar.php",
+    "verify-protocols": "@php tools/verify-protocols.php"
+  }
+}

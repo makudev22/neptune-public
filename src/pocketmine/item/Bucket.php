@@ -1,0 +1,57 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\item;
+
+use pocketmine\block\Block;
+use pocketmine\block\BlockFactory;
+use pocketmine\block\BlockIds;
+use pocketmine\block\Liquid;
+use pocketmine\event\player\PlayerBucketFillEvent;
+use pocketmine\math\Vector3;
+use pocketmine\Player;
+
+class Bucket extends Item
+{
+	public function getMaxStackSize() : int
+	{
+		return 16;
+	}
+
+	public function onActivate(Player $player, Block $blockReplace, Block $blockClicked, int $face, Vector3 $clickVector) : bool
+	{
+		//TODO: move this to generic placement logic
+
+		if ($blockClicked instanceof Liquid && $blockClicked->getDamage() === 0) {
+			$stack = clone $this;
+			$stack->pop();
+
+			$resultItem = ItemFactory::get(Item::BUCKET, $blockClicked->getFlowingForm()->getId());
+			$ev = new PlayerBucketFillEvent($player, $blockReplace, $face, $this, $resultItem);
+			$ev->call();
+			if (!$ev->isCancelled()) {
+				$level = $player->getLevel();
+				$level->setBlock($blockClicked, BlockFactory::get(BlockIds::AIR), true, true);
+				$level->broadcastLevelSoundEvent($blockClicked->add(0.5, 0.5, 0.5), $blockClicked->getBucketFillSound());
+				if ($player->isSurvival()) {
+					if ($stack->getCount() === 0) {
+						$player->getInventory()->setItemInHand($ev->getItem());
+					} else {
+						$player->getInventory()->setItemInHand($stack);
+						$player->getInventory()->addItem($ev->getItem());
+					}
+				} else {
+					$player->getInventory()->addItem($ev->getItem());
+				}
+
+				return true;
+			} else {
+				$player->getInventory()->sendContents($player);
+			}
+		}
+
+		return false;
+	}
+}

@@ -1,0 +1,1127 @@
+[
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 4,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 8,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 12,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 1,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 5,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 9,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 13,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 2,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 6,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 10,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 14,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 3,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 7,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 11,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 15,
+                "id": 26
+            }
+        ],
+        "output": [
+            {
+                "id": 355
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 14,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 11,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 9,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 7,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 5,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 6,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 15,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 12,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 13,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 1,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 10,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 8,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 4,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 2,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 3,
+                "id": 171
+            }
+        ],
+        "output": [
+            {
+                "id": 171
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "id": 446
+            }
+        ],
+        "output": [
+            {
+                "id": 446
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 15,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 11,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 12,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 9,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 7,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 13,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 3,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 8,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 5,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 2,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 1,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 6,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 10,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 14,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    },
+    {
+        "block": "crafting_table",
+        "input": [
+            {
+                "damage": -1,
+                "id": 451
+            },
+            {
+                "damage": 4,
+                "id": 35
+            }
+        ],
+        "output": [
+            {
+                "id": 35
+            }
+        ],
+        "priority": 0
+    }
+]

@@ -1,0 +1,67 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\format\io\leveldb\upgrade;
+
+use pocketmine\nbt\tag\NamedTag;
+use pocketmine\utils\Utils;
+use function array_diff;
+use function count;
+
+final class BlockStateUpgradeSchemaBlockRemap
+{
+	/**
+	 * @param NamedTag[] $oldState
+	 * @param NamedTag[] $newState
+	 * @param string[]   $copiedState
+	 *
+	 * @phpstan-param array<string, NamedTag> $oldState
+	 * @phpstan-param array<string, NamedTag> $newState
+	 * @phpstan-param list<string>       $copiedState
+	 */
+	public function __construct(
+		public array $oldState,
+		public string|BlockStateUpgradeSchemaFlattenInfo $newName,
+		public array $newState,
+		public array $copiedState
+	) {
+	}
+
+	public function equals(self $that) : bool
+	{
+		$sameName = $this->newName === $that->newName ||
+			(
+				$this->newName instanceof BlockStateUpgradeSchemaFlattenInfo &&
+				$that->newName instanceof BlockStateUpgradeSchemaFlattenInfo &&
+				$this->newName->equals($that->newName)
+			);
+		if (!$sameName) {
+			return false;
+		}
+
+		if (
+			count($this->oldState) !== count($that->oldState) ||
+			count($this->newState) !== count($that->newState) ||
+			count($this->copiedState) !== count($that->copiedState) ||
+			count(array_diff($this->copiedState, $that->copiedState)) !== 0
+		) {
+			return false;
+		}
+		foreach (Utils::stringifyKeys($this->oldState) as $propertyName => $propertyValue) {
+			if (!isset($that->oldState[$propertyName]) || !$that->oldState[$propertyName]->equals($propertyValue)) {
+				//different filter value
+				return false;
+			}
+		}
+		foreach (Utils::stringifyKeys($this->newState) as $propertyName => $propertyValue) {
+			if (!isset($that->newState[$propertyName]) || !$that->newState[$propertyName]->equals($propertyValue)) {
+				//different replacement value
+				return false;
+			}
+		}
+
+		return true;
+	}
+}

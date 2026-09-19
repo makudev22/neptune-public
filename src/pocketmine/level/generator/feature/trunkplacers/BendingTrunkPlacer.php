@@ -1,0 +1,70 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\generator\feature\trunkplacers;
+
+use pocketmine\level\ChunkManager;
+use pocketmine\level\generator\feature\configurations\TreeConfiguration;
+use pocketmine\level\generator\feature\setter\Setter;
+use pocketmine\level\generator\feature\TreeFeature;
+use pocketmine\math\Facing;
+use pocketmine\math\Vector3;
+use pocketmine\utils\Random;
+use pocketmine\utils\valueproviders\IntProvider;
+use function count;
+
+class BendingTrunkPlacer extends TrunkPlacer{
+	public function __construct(
+		int $baseHeight,
+		int $heightRandA,
+		int $heightRandB,
+		private int $minHeightForLeaves,
+		private IntProvider $bendLength
+	){
+		parent::__construct($baseHeight, $heightRandA, $heightRandB);
+	}
+
+	public function type() : TrunkPlacerType {
+		return TrunkPlacerType::BENDING_TRUNK_PLACER;
+	}
+
+	public function placeTrunk(ChunkManager $level, Setter $trunkSetter, Random $random, int $treeHeight, Vector3 $origin, TreeConfiguration $config) : array {
+		$direction = Facing::HORIZONTAL[$random->nextRange(0, count(Facing::HORIZONTAL) - 1)];
+		$logHeight = $treeHeight - 1;
+		$pos = clone $origin;
+		$belowPos = $pos->down();
+		$this->setDirtAt($level, $trunkSetter, $random, $belowPos, $config);
+		$foliagePoints = [];
+
+		for ($i = 0; $i <= $logHeight; $i++) {
+			if ($i + 1 >= $logHeight + $random->nextBoundedInt(2)) {
+				$pos = $pos->getSide($direction);
+			}
+
+			if (TreeFeature::validTreePos($level, $pos)) {
+				$this->placeLog($level, $trunkSetter, $random, $pos, $config);
+			}
+
+			if ($i >= $this->minHeightForLeaves) {
+				$foliagePoints[] = new FoliageAttachment(clone $pos, 0, false);
+			}
+
+			$pos = $pos->up();
+		}
+
+		$dirLength = $this->bendLength->sample($random);
+
+		for ($i = 0; $i <= $dirLength; $i++) {
+			if (TreeFeature::validTreePos($level, $pos)) {
+				$this->placeLog($level, $trunkSetter, $random, $pos, $config);
+			}
+
+			$foliagePoints[] = new FoliageAttachment(clone $pos, 0, false);
+			$pos = $pos->getSide($direction);
+		}
+
+		return $foliagePoints;
+	}
+}

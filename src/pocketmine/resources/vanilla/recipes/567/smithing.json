@@ -1,0 +1,128 @@
+[
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 279
+        },
+        "output": {
+            "id": 746
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 313
+        },
+        "output": {
+            "id": 751
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 311
+        },
+        "output": {
+            "id": 749
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 310
+        },
+        "output": {
+            "id": 748
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 293
+        },
+        "output": {
+            "id": 747
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 312
+        },
+        "output": {
+            "id": 750
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 278
+        },
+        "output": {
+            "id": 745
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 277
+        },
+        "output": {
+            "id": 744
+        }
+    },
+    {
+        "addition": {
+            "damage": -1,
+            "id": 742
+        },
+        "block": "smithing_table",
+        "input": {
+            "damage": -1,
+            "id": 276
+        },
+        "output": {
+            "id": 743
+        }
+    }
+]

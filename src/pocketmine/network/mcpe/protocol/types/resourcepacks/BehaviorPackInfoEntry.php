@@ -1,0 +1,107 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol\types\resourcepacks;
+
+use pocketmine\network\mcpe\NetworkBinaryStream;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+
+class BehaviorPackInfoEntry
+{
+	public function __construct(
+		private string $packId,
+		private string $version,
+		private int $sizeBytes,
+		private string $encryptionKey = "",
+		private string $subPackName = "",
+		private string $contentId = "",
+		private bool $hasScripts = false,
+		private bool $isAddonPack = false
+	) {
+	}
+
+	public function getPackId() : string
+	{
+		return $this->packId;
+	}
+
+	public function getVersion() : string
+	{
+		return $this->version;
+	}
+
+	public function getSizeBytes() : int
+	{
+		return $this->sizeBytes;
+	}
+
+	public function getEncryptionKey() : string
+	{
+		return $this->encryptionKey;
+	}
+
+	public function getSubPackName() : string
+	{
+		return $this->subPackName;
+	}
+
+	public function getContentId() : string
+	{
+		return $this->contentId;
+	}
+
+	public function hasScripts() : bool
+	{
+		return $this->hasScripts;
+	}
+
+	public function isAddonPack() : bool
+	{
+		return $this->isAddonPack;
+	}
+
+	public function write(NetworkBinaryStream $out) : void
+	{
+		$out->putString($this->packId);
+		$out->putString($this->version);
+		$out->putLLong($this->sizeBytes);
+		$out->putString($this->encryptionKey);
+		if ($out->getProtocol() >= ProtocolInfo::PROTOCOL_407) {
+			$out->putString($this->subPackName);
+			$out->putString($this->contentId);
+			$out->putBool($this->hasScripts);
+			if ($out->getProtocol() >= ProtocolInfo::PROTOCOL_712) {
+				$out->putBool($this->isAddonPack);
+			}
+		}
+	}
+
+	public static function read(NetworkBinaryStream $in) : self
+	{
+		$uuid = $in->getString();
+		$version = $in->getString();
+		$sizeBytes = $in->getLLong();
+		$encryptionKey = $in->getString();
+		if ($in->getProtocol() >= ProtocolInfo::PROTOCOL_407) {
+			$subPackName = $in->getString();
+			$contentId = $in->getString();
+			$hasScripts = $in->getBool();
+			if ($in->getProtocol() >= ProtocolInfo::PROTOCOL_712) {
+				$isAddonPack = $in->getBool();
+			}
+		}
+
+		return new self(
+			$uuid,
+			$version,
+			$sizeBytes,
+			$encryptionKey,
+			$subPackName ?? "",
+			$contentId ?? $uuid,
+			$hasScripts ?? false,
+			$isAddonPack ?? false
+		);
+	}
+}

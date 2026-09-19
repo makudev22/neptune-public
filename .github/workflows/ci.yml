@@ -1,0 +1,27 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+      - run: composer validate --strict
+      - run: composer install --no-interaction --no-progress --prefer-dist --no-dev
+      - run: git ls-files '*.php' | xargs -n 1 php -l
+      - run: composer run verify-protocols
+      - run: composer run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Neptune-phar
+          path: build/Neptune.phar

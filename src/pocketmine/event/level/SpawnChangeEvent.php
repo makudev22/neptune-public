@@ -1,0 +1,30 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\event\level;
+
+use pocketmine\level\Level;
+use pocketmine\level\Position;
+
+/**
+ * An event that is called when a level spawn changes.
+ * The previous spawn is included
+ */
+class SpawnChangeEvent extends LevelEvent
+{
+	/** @var Position */
+	private $previousSpawn;
+
+	public function __construct(Level $level, Position $previousSpawn)
+	{
+		parent::__construct($level);
+		$this->previousSpawn = $previousSpawn;
+	}
+
+	public function getPreviousSpawn() : Position
+	{
+		return $this->previousSpawn;
+	}
+}

@@ -1,0 +1,47 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\inventory\transaction;
+
+use pocketmine\inventory\Inventory;
+use pocketmine\inventory\transaction\action\InventoryAction;
+
+use function spl_object_id;
+
+final class TransactionBuilder
+{
+	/** @var TransactionBuilderInventory[] */
+	private array $inventories = [];
+
+	/** @var InventoryAction[] */
+	private array $extraActions = [];
+
+	public function addAction(InventoryAction $action) : void
+	{
+		$this->extraActions[spl_object_id($action)] = $action;
+	}
+
+	public function getInventory(Inventory $inventory) : TransactionBuilderInventory
+	{
+		$id = spl_object_id($inventory);
+		return $this->inventories[$id] ??= new TransactionBuilderInventory($inventory);
+	}
+
+	/**
+	 * @return InventoryAction[]
+	 */
+	public function generateActions() : array
+	{
+		$actions = $this->extraActions;
+
+		foreach ($this->inventories as $inventory) {
+			foreach ($inventory->generateActions() as $action) {
+				$actions[spl_object_id($action)] = $action;
+			}
+		}
+
+		return $actions;
+	}
+}

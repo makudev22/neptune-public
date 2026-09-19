@@ -1,0 +1,52 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol;
+
+use pocketmine\network\mcpe\NetworkSession;
+
+class HurtArmorPacket extends DataPacket
+{
+	public const NETWORK_ID = ProtocolInfo::HURT_ARMOR_PACKET;
+
+	/** @var int */
+	public $cause;
+	/** @var int */
+	public $health;
+	/** @var int */
+	public $armorSlotFlags;
+
+	protected function decodePayload() : void
+	{
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_407) {
+			$this->cause = $this->getVarInt();
+		}
+		$this->health = $this->getVarInt();
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_465) {
+			$this->armorSlotFlags = $this->getUnsignedVarLong();
+		}
+	}
+
+	protected function encodePayload() : void
+	{
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_407) {
+			$this->putVarInt($this->cause);
+		}
+		$this->putVarInt($this->health);
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_465) {
+			$this->putUnsignedVarLong($this->armorSlotFlags);
+		}
+	}
+
+	public function mustBeDecoded() : bool
+	{
+		return false;
+	}
+
+	public function handle(NetworkSession $session) : bool
+	{
+		return $session->handleHurtArmor($this);
+	}
+}

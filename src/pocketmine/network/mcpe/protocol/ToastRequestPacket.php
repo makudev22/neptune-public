@@ -1,0 +1,42 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol;
+
+use pocketmine\network\mcpe\NetworkSession;
+
+/**
+ * Displays a toast notification on the client's screen (usually a little box at the top, like the one shown when
+ * getting an Xbox Live achievement).
+ */
+class ToastRequestPacket extends DataPacket
+{
+	public const NETWORK_ID = ProtocolInfo::TOAST_REQUEST_PACKET;
+
+	public string $title;
+	public string $content;
+
+	protected function decodePayload() : void
+	{
+		$this->title = $this->getString();
+		$this->content = $this->getString();
+	}
+
+	protected function encodePayload() : void
+	{
+		$this->putString($this->title);
+		$this->putString($this->content);
+	}
+
+	public function mustBeDecoded() : bool
+	{
+		return false;
+	}
+
+	public function handle(NetworkSession $session) : bool
+	{
+		return $session->handleToastRequest($this);
+	}
+}

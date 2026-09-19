@@ -1,0 +1,63 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol\types\inventory\stackrequest;
+
+use pocketmine\network\mcpe\NetworkBinaryStream;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\network\mcpe\protocol\types\GetTypeIdFromConstTrait;
+
+/**
+ * Repair and/or remove enchantments from an item in a grindstone.
+ */
+final class GrindstoneStackRequestAction extends ItemStackRequestAction
+{
+	use GetTypeIdFromConstTrait;
+
+	public const ID = ItemStackRequestActionType::CRAFTING_GRINDSTONE;
+
+	public function __construct(
+		private int $recipeId,
+		private int $repairCost,
+		private int $repetitions
+	) {
+	}
+
+	public function getRecipeId() : int
+	{
+		return $this->recipeId;
+	}
+
+	/** WARNING: This may be negative */
+	public function getRepairCost() : int
+	{
+		return $this->repairCost;
+	}
+
+	public function getRepetitions() : int
+	{
+		return $this->repetitions;
+	}
+
+	public static function read(NetworkBinaryStream $in) : self
+	{
+		$recipeId = $in->readRecipeNetId();
+		$repairCost = $in->getVarInt(); //WHY!!!!
+		if ($in->getProtocol() >= ProtocolInfo::PROTOCOL_712) {
+			$repetitions = $in->getByte();
+		}
+
+		return new self($recipeId, $repairCost, $repetitions ?? 1);
+	}
+
+	public function write(NetworkBinaryStream $out) : void
+	{
+		$out->writeRecipeNetId($this->recipeId);
+		$out->putVarInt($this->repairCost);
+		if ($out->getProtocol() >= ProtocolInfo::PROTOCOL_712) {
+			$out->putByte($this->repetitions);
+		}
+	}
+}

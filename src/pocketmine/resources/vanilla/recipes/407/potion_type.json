@@ -1,0 +1,2387 @@
+[
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 31,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 31,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 31,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 377
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 1,
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 1,
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 1,
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 10,
+            "id": 441
+        },
+        "output": {
+            "damage": 18,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 10,
+            "id": 373
+        },
+        "output": {
+            "damage": 18,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 10,
+            "id": 438
+        },
+        "output": {
+            "damage": 18,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 14,
+            "id": 441
+        },
+        "output": {
+            "damage": 17,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 14,
+            "id": 373
+        },
+        "output": {
+            "damage": 17,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 14,
+            "id": 438
+        },
+        "output": {
+            "damage": 17,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 15,
+            "id": 441
+        },
+        "output": {
+            "damage": 18,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 15,
+            "id": 373
+        },
+        "output": {
+            "damage": 18,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 15,
+            "id": 438
+        },
+        "output": {
+            "damage": 18,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 2,
+            "id": 441
+        },
+        "output": {
+            "damage": 35,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 2,
+            "id": 373
+        },
+        "output": {
+            "damage": 35,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 2,
+            "id": 438
+        },
+        "output": {
+            "damage": 35,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 21,
+            "id": 441
+        },
+        "output": {
+            "damage": 23,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 21,
+            "id": 373
+        },
+        "output": {
+            "damage": 23,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 21,
+            "id": 438
+        },
+        "output": {
+            "damage": 23,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 22,
+            "id": 441
+        },
+        "output": {
+            "damage": 24,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 22,
+            "id": 373
+        },
+        "output": {
+            "damage": 24,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 22,
+            "id": 438
+        },
+        "output": {
+            "damage": 24,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 25,
+            "id": 441
+        },
+        "output": {
+            "damage": 23,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 25,
+            "id": 373
+        },
+        "output": {
+            "damage": 23,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 25,
+            "id": 438
+        },
+        "output": {
+            "damage": 23,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 26,
+            "id": 441
+        },
+        "output": {
+            "damage": 23,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 26,
+            "id": 373
+        },
+        "output": {
+            "damage": 23,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 26,
+            "id": 438
+        },
+        "output": {
+            "damage": 23,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 27,
+            "id": 441
+        },
+        "output": {
+            "damage": 24,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 27,
+            "id": 373
+        },
+        "output": {
+            "damage": 24,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 27,
+            "id": 438
+        },
+        "output": {
+            "damage": 24,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 3,
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 3,
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 3,
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 31,
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 31,
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 31,
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 32,
+            "id": 441
+        },
+        "output": {
+            "damage": 35,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 32,
+            "id": 373
+        },
+        "output": {
+            "damage": 35,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 32,
+            "id": 438
+        },
+        "output": {
+            "damage": 35,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 33,
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 33,
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 33,
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 5,
+            "id": 441
+        },
+        "output": {
+            "damage": 7,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 5,
+            "id": 373
+        },
+        "output": {
+            "damage": 7,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 5,
+            "id": 438
+        },
+        "output": {
+            "damage": 7,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 6,
+            "id": 441
+        },
+        "output": {
+            "damage": 8,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 6,
+            "id": 373
+        },
+        "output": {
+            "damage": 8,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 6,
+            "id": 438
+        },
+        "output": {
+            "damage": 8,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 9,
+            "id": 441
+        },
+        "output": {
+            "damage": 17,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 9,
+            "id": 373
+        },
+        "output": {
+            "damage": 17,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "damage": 9,
+            "id": 438
+        },
+        "output": {
+            "damage": 17,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 34,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 34,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 376
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 34,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 28,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 28,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 28,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 370
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 21,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 21,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 21,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 382
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 14,
+            "id": 441
+        },
+        "output": {
+            "damage": 16,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 14,
+            "id": 373
+        },
+        "output": {
+            "damage": 16,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 14,
+            "id": 438
+        },
+        "output": {
+            "damage": 16,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 17,
+            "id": 441
+        },
+        "output": {
+            "damage": 42,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 17,
+            "id": 373
+        },
+        "output": {
+            "damage": 42,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 17,
+            "id": 438
+        },
+        "output": {
+            "damage": 42,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 21,
+            "id": 441
+        },
+        "output": {
+            "damage": 22,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 21,
+            "id": 373
+        },
+        "output": {
+            "damage": 22,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 21,
+            "id": 438
+        },
+        "output": {
+            "damage": 22,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 23,
+            "id": 441
+        },
+        "output": {
+            "damage": 24,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 23,
+            "id": 373
+        },
+        "output": {
+            "damage": 24,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 23,
+            "id": 438
+        },
+        "output": {
+            "damage": 24,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 25,
+            "id": 441
+        },
+        "output": {
+            "damage": 27,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 25,
+            "id": 373
+        },
+        "output": {
+            "damage": 27,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 25,
+            "id": 438
+        },
+        "output": {
+            "damage": 27,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 28,
+            "id": 441
+        },
+        "output": {
+            "damage": 30,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 28,
+            "id": 373
+        },
+        "output": {
+            "damage": 30,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 28,
+            "id": 438
+        },
+        "output": {
+            "damage": 30,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 31,
+            "id": 441
+        },
+        "output": {
+            "damage": 33,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 31,
+            "id": 373
+        },
+        "output": {
+            "damage": 33,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 31,
+            "id": 438
+        },
+        "output": {
+            "damage": 33,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 37,
+            "id": 441
+        },
+        "output": {
+            "damage": 39,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 37,
+            "id": 373
+        },
+        "output": {
+            "damage": 39,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 37,
+            "id": 438
+        },
+        "output": {
+            "damage": 39,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 9,
+            "id": 441
+        },
+        "output": {
+            "damage": 11,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 9,
+            "id": 373
+        },
+        "output": {
+            "damage": 11,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "damage": 9,
+            "id": 438
+        },
+        "output": {
+            "damage": 11,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 3,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 3,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 348
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 3,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 396
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 5,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 396
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 5,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 396
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 5,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 12,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 12,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 12,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 378
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 372
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 4,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 372
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 4,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 372
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 4,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 470
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 40,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 470
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 40,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 470
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 40,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 462
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 19,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 462
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 19,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 462
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 19,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 9,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 9,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 9,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 414
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 12,
+            "id": 441
+        },
+        "output": {
+            "damage": 13,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 12,
+            "id": 373
+        },
+        "output": {
+            "damage": 13,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 12,
+            "id": 438
+        },
+        "output": {
+            "damage": 13,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 14,
+            "id": 441
+        },
+        "output": {
+            "damage": 15,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 14,
+            "id": 373
+        },
+        "output": {
+            "damage": 15,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 14,
+            "id": 438
+        },
+        "output": {
+            "damage": 15,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 17,
+            "id": 441
+        },
+        "output": {
+            "damage": 18,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 17,
+            "id": 373
+        },
+        "output": {
+            "damage": 18,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 17,
+            "id": 438
+        },
+        "output": {
+            "damage": 18,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 19,
+            "id": 441
+        },
+        "output": {
+            "damage": 20,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 19,
+            "id": 373
+        },
+        "output": {
+            "damage": 20,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 19,
+            "id": 438
+        },
+        "output": {
+            "damage": 20,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 25,
+            "id": 441
+        },
+        "output": {
+            "damage": 26,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 25,
+            "id": 373
+        },
+        "output": {
+            "damage": 26,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 25,
+            "id": 438
+        },
+        "output": {
+            "damage": 26,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 28,
+            "id": 441
+        },
+        "output": {
+            "damage": 29,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 28,
+            "id": 373
+        },
+        "output": {
+            "damage": 29,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 28,
+            "id": 438
+        },
+        "output": {
+            "damage": 29,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 31,
+            "id": 441
+        },
+        "output": {
+            "damage": 32,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 31,
+            "id": 373
+        },
+        "output": {
+            "damage": 32,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 31,
+            "id": 438
+        },
+        "output": {
+            "damage": 32,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 34,
+            "id": 441
+        },
+        "output": {
+            "damage": 35,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 34,
+            "id": 373
+        },
+        "output": {
+            "damage": 35,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 34,
+            "id": 438
+        },
+        "output": {
+            "damage": 35,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 37,
+            "id": 441
+        },
+        "output": {
+            "damage": 38,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 37,
+            "id": 373
+        },
+        "output": {
+            "damage": 38,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 37,
+            "id": 438
+        },
+        "output": {
+            "damage": 38,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 40,
+            "id": 441
+        },
+        "output": {
+            "damage": 41,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 40,
+            "id": 373
+        },
+        "output": {
+            "damage": 41,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 40,
+            "id": 438
+        },
+        "output": {
+            "damage": 41,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 5,
+            "id": 441
+        },
+        "output": {
+            "damage": 6,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 5,
+            "id": 373
+        },
+        "output": {
+            "damage": 6,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 5,
+            "id": 438
+        },
+        "output": {
+            "damage": 6,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 7,
+            "id": 441
+        },
+        "output": {
+            "damage": 8,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 7,
+            "id": 373
+        },
+        "output": {
+            "damage": 8,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 7,
+            "id": 438
+        },
+        "output": {
+            "damage": 8,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 9,
+            "id": 441
+        },
+        "output": {
+            "damage": 10,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 9,
+            "id": 373
+        },
+        "output": {
+            "damage": 10,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "damage": 9,
+            "id": 438
+        },
+        "output": {
+            "damage": 10,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 331
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 25,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 25,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 25,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 375
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 14,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 14,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 14,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "id": 441
+        },
+        "output": {
+            "damage": 1,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "id": 373
+        },
+        "output": {
+            "damage": 1,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 353
+        },
+        "input": {
+            "id": 438
+        },
+        "output": {
+            "damage": 1,
+            "id": 438
+        }
+    },
+    {
+        "ingredient": {
+            "id": 469
+        },
+        "input": {
+            "damage": 4,
+            "id": 441
+        },
+        "output": {
+            "damage": 37,
+            "id": 441
+        }
+    },
+    {
+        "ingredient": {
+            "id": 469
+        },
+        "input": {
+            "damage": 4,
+            "id": 373
+        },
+        "output": {
+            "damage": 37,
+            "id": 373
+        }
+    },
+    {
+        "ingredient": {
+            "id": 469
+        },
+        "input": {
+            "damage": 4,
+            "id": 438
+        },
+        "output": {
+            "damage": 37,
+            "id": 438
+        }
+    }
+]

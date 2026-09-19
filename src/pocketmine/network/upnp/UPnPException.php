@@ -1,0 +1,10 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\upnp;
+
+final class UPnPException extends \RuntimeException
+{
+}

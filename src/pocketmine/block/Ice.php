@@ -1,0 +1,77 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\block;
+
+use pocketmine\block\utils\BlockEventHelper;
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\Item;
+use pocketmine\Player;
+
+class Ice extends Transparent
+{
+	protected $id = self::ICE;
+
+	public function __construct(int $meta = 0)
+	{
+		$this->meta = $meta;
+	}
+
+	public function getName() : string
+	{
+		return "Ice";
+	}
+
+	public function getHardness() : float
+	{
+		return 0.5;
+	}
+
+	public function getLightFilter() : int
+	{
+		return 2;
+	}
+
+	public function getFrictionFactor() : float
+	{
+		return 0.98;
+	}
+
+	public function getToolType() : int
+	{
+		return BlockToolType::TYPE_PICKAXE;
+	}
+
+	public function onBreak(Item $item, Player $player = null) : bool
+	{
+		if (($player === null || $player->isSurvival()) && !$item->hasEnchantment(Enchantment::SILK_TOUCH)) {
+			$this->getLevel()->setBlock($this, BlockFactory::get(Block::WATER), true);
+			return true;
+		}
+		return parent::onBreak($item, $player);
+	}
+
+	public function ticksRandomly() : bool
+	{
+		return true;
+	}
+
+	public function onRandomTick() : void{
+		$level = $this->level;
+		if($level->getHighestAdjacentBlockLight($this->x, $this->y, $this->z) >= 12){
+			BlockEventHelper::melt($this, BlockFactory::get(BlockIds::WATER));
+		}
+	}
+
+	public function getDropsForCompatibleTool(Item $item) : array
+	{
+		return [];
+	}
+
+	public function isAffectedBySilkTouch() : bool
+	{
+		return true;
+	}
+}

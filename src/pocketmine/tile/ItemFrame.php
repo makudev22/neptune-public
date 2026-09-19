@@ -1,0 +1,104 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\tile;
+
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\LongTag;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+
+class ItemFrame extends Spawnable
+{
+	public const TAG_ITEM_ROTATION = "ItemRotation";
+	public const TAG_ITEM_DROP_CHANCE = "ItemDropChance";
+	public const TAG_ITEM = "Item";
+
+	private Item $item;
+	private int $itemRotation;
+	private float $itemDropChance;
+
+	protected function readSaveData(CompoundTag $nbt) : void
+	{
+		if (($itemTag = $nbt->getCompoundTag(self::TAG_ITEM)) !== null) {
+			$this->item = Item::nbtDeserialize($itemTag);
+		} else {
+			$this->item = ItemFactory::get(Item::AIR, 0, 0);
+		}
+		$this->item->setOnItemFrame(true);
+
+		$this->itemRotation = $nbt->getByte(self::TAG_ITEM_ROTATION, 0, true);
+		$this->itemDropChance = $nbt->getFloat(self::TAG_ITEM_DROP_CHANCE, 1.0, true);
+	}
+
+	protected function writeSaveData(CompoundTag $nbt) : void
+	{
+		$nbt->setFloat(self::TAG_ITEM_DROP_CHANCE, $this->itemDropChance);
+		$nbt->setByte(self::TAG_ITEM_ROTATION, $this->itemRotation);
+		$nbt->setTag($this->item->nbtSerialize(-1, self::TAG_ITEM));
+	}
+
+	public function hasItem() : bool
+	{
+		return !$this->item->isNull();
+	}
+
+	public function getItem() : Item
+	{
+		return clone $this->item;
+	}
+
+	public function setItem(Item $item = null) : void
+	{
+		if ($item !== null && !$item->isNull()) {
+			$this->item = clone $item;
+		} else {
+			$this->item = ItemFactory::get(Item::AIR, 0, 0);
+		}
+		$this->item->setOnItemFrame(true);
+
+		$this->onChanged();
+	}
+
+	public function getItemRotation() : int
+	{
+		return $this->itemRotation;
+	}
+
+	public function setItemRotation(int $rotation) : void
+	{
+		$this->itemRotation = $rotation;
+		$this->onChanged();
+	}
+
+	public function getItemDropChance() : float
+	{
+		return $this->itemDropChance;
+	}
+
+	public function setItemDropChance(float $chance) : void
+	{
+		$this->itemDropChance = $chance;
+		$this->onChanged();
+	}
+
+	protected function addAdditionalSpawnData(CompoundTag $nbt, int $protocolVersion) : void
+	{
+		$nbt->setFloat(self::TAG_ITEM_DROP_CHANCE, $this->itemDropChance);
+		$nbt->setByte(self::TAG_ITEM_ROTATION, $this->itemRotation);
+
+		$item = $this->item;
+		if ($item->getNamedTagEntry("map_uuid") instanceof LongTag && $protocolVersion < ProtocolInfo::PROTOCOL_407) {
+			$item = clone $item;
+			$mapId = $item->getNamedTagEntry("map_uuid")->getValue();
+			$item->removeNamedTagEntry("map_uuid");
+			$item->setNamedTagEntry(new StringTag("map_uuid", (string) $mapId));
+		}
+
+		$nbt->setTag($item->nbtSerialize(-1, self::TAG_ITEM, $protocolVersion));
+	}
+}

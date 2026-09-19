@@ -1,0 +1,62 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol;
+
+use pocketmine\network\mcpe\NetworkSession;
+
+class AgentAnimationPacket extends DataPacket
+{
+	public const NETWORK_ID = ProtocolInfo::AGENT_ANIMATION_PACKET;
+
+	public const TYPE_ARM_SWING = 0;
+	public const TYPE_SHRUG = 1;
+
+	private int $animationType;
+	private int $actorRuntimeId;
+
+	/**
+	 * @generate-create-func
+	 */
+	public static function create(int $animationType, int $actorRuntimeId) : self
+	{
+		$result = new self();
+		$result->animationType = $animationType;
+		$result->actorRuntimeId = $actorRuntimeId;
+		return $result;
+	}
+
+	public function getAnimationType() : int
+	{
+		return $this->animationType;
+	}
+
+	public function getActorRuntimeId() : int
+	{
+		return $this->actorRuntimeId;
+	}
+
+	protected function decodePayload() : void
+	{
+		$this->animationType = $this->getByte();
+		$this->actorRuntimeId = $this->getEntityRuntimeId();
+	}
+
+	protected function encodePayload() : void
+	{
+		$this->putByte($this->animationType);
+		$this->putEntityRuntimeId($this->actorRuntimeId);
+	}
+
+	public function mustBeDecoded() : bool
+	{
+		return false;
+	}
+
+	public function handle(NetworkSession $session) : bool
+	{
+		return $session->handleAgentAnimation($this);
+	}
+}

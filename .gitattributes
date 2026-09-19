@@ -1,0 +1,8 @@
+/build export-ignore
+/bin export-ignore
+/log_archive export-ignore
+/plugins export-ignore
+/server-data export-ignore
+/vendor export-ignore
+/.idea export-ignore
+/.vscode export-ignore

@@ -1,0 +1,59 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\generator;
+
+use pocketmine\block\BlockFactory;
+use pocketmine\entity\Entity;
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\ItemFactory;
+use pocketmine\level\Level;
+use pocketmine\level\SimpleChunkManager;
+use pocketmine\scheduler\AsyncTask;
+use pocketmine\thread\NonThreadSafeValue;
+use pocketmine\tile\Tile;
+use pocketmine\utils\Random;
+
+class GeneratorRegisterTask extends AsyncTask
+{
+	/** @phpstan-var class-string<Generator> */
+	public string $generatorClass;
+	public NonThreadSafeValue $settings;
+	public int $seed;
+	public int $levelId;
+	public int $worldHeight;
+
+	/**
+	 * @phpstan-param class-string<Generator> $generatorClass
+	 */
+	public function __construct(Level $level, string $generatorClass, array $generatorSettings = [])
+	{
+		$this->generatorClass = $generatorClass;
+		$this->settings = new NonThreadSafeValue($generatorSettings);
+		$this->seed = $level->getSeed();
+		$this->levelId = $level->getId();
+		$this->worldHeight = $level->getWorldHeight();
+	}
+
+	public function onRun() : void
+	{
+		BlockFactory::init();
+		ItemFactory::init();
+		Enchantment::init();
+		Entity::init();
+		Tile::init();
+
+		$manager = new SimpleChunkManager($this->seed, $this->worldHeight);
+		$this->saveToThreadStore("generation.level{$this->levelId}.manager", $manager);
+
+		/**
+		 * @var Generator $generator
+		 * @see Generator::__construct()
+		 */
+		$generator = new $this->generatorClass($this->settings->deserialize());
+		$generator->init($manager, new Random($manager->getSeed()));
+		$this->saveToThreadStore("generation.level{$this->levelId}.generator", $generator);
+	}
+}

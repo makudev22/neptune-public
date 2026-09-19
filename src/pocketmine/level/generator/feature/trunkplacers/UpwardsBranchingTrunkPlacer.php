@@ -1,0 +1,117 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\generator\feature\trunkplacers;
+
+use pocketmine\block\Block;
+use pocketmine\level\ChunkManager;
+use pocketmine\level\generator\feature\configurations\TreeConfiguration;
+use pocketmine\level\generator\feature\setter\Setter;
+use pocketmine\math\Facing;
+use pocketmine\math\Vector3;
+use pocketmine\utils\Random;
+use pocketmine\utils\valueproviders\IntProvider;
+use function count;
+use function max;
+
+class UpwardsBranchingTrunkPlacer extends TrunkPlacer{
+	/**
+	 * @param Block[] $canGrowThrough
+	 */
+	public function __construct(
+		int $baseHeight,
+		int $heightRandA,
+		int $heightRandB,
+		private IntProvider $extraBranchSteps,
+		private float $placeBranchPerLogProbability,
+		private IntProvider $extraBranchLength,
+		private array $canGrowThrough
+	){
+		parent::__construct($baseHeight, $heightRandA, $heightRandB);
+	}
+
+	public function type() : TrunkPlacerType {
+		return TrunkPlacerType::UPWARDS_BRANCHING_TRUNK_PLACER;
+	}
+
+	public function placeTrunk(ChunkManager $level, Setter $trunkSetter, Random $random, int $treeHeight, Vector3 $origin, TreeConfiguration $config) : array {
+		$attachments = [];
+
+		for ($heightPos = 0; $heightPos < $treeHeight; $heightPos++) {
+			$currentHeight = $origin->getY() + $heightPos;
+			if ($this->placeLog($level, $trunkSetter, $random, $logPos = new Vector3($origin->getX(), $currentHeight, $origin->getZ()), $config)
+				&& $heightPos < $treeHeight - 1
+				&& $random->nextFloat() < $this->placeBranchPerLogProbability) {
+				$branchDir = Facing::HORIZONTAL[$random->nextRange(0, count(Facing::HORIZONTAL) - 1)];
+				$branchLen = $this->extraBranchLength->sample($random);
+				$branchPos = max(0, $branchLen - $this->extraBranchLength->sample($random) - 1);
+				$branchSteps = $this->extraBranchSteps->sample($random);
+				$this->placeBranch($level, $trunkSetter, $random, $treeHeight, $config, $attachments, $logPos, $currentHeight, $branchDir, $branchPos, $branchSteps);
+			}
+
+			if ($heightPos == $treeHeight - 1) {
+				$attachments[] = new FoliageAttachment($logPos = new Vector3($origin->getX(), $currentHeight + 1, $origin->getZ()), 0, false);
+			}
+		}
+
+		return $attachments;
+	}
+
+	public function placeBranch(
+		ChunkManager      $level,
+		Setter            $trunkSetter,
+		Random            $random,
+		int               $treeHeight,
+		TreeConfiguration $config,
+		array             &$attachments,
+		Vector3           $logPos,
+		int               $currentHeight,
+		int               $branchDir,
+		int               $branchPos,
+		int               $branchSteps
+	) : void {
+		$heightAlongBranch = $currentHeight + $branchPos;
+		$logX = $logPos->getX();
+		$logZ = $logPos->getZ();
+		$branchPlacementIndex = $branchPos;
+
+		while ($branchPlacementIndex < $treeHeight && $branchSteps > 0) {
+			if ($branchPlacementIndex >= 1) {
+				$placementHeight = $currentHeight + $branchPlacementIndex;
+				$logX += Facing::OFFSET[$branchDir][0];
+				$logZ += Facing::OFFSET[$branchDir][2];
+				$heightAlongBranch = $placementHeight;
+				if ($this->placeLog($level, $trunkSetter, $random, $logPos = new Vector3($logX, $placementHeight, $logZ), $config)) {
+					$heightAlongBranch = $placementHeight + 1;
+				}
+
+				$attachments[] = new FoliageAttachment(clone $logPos, 0, false);
+			}
+
+			$branchPlacementIndex++;
+			$branchSteps--;
+		}
+
+		if ($heightAlongBranch - $currentHeight > 1) {
+			$foliagePos = new Vector3($logX, $heightAlongBranch, $logZ);
+			$attachments[] = new FoliageAttachment($foliagePos, 0, false);
+			$attachments[] = new FoliageAttachment($foliagePos->down(2), 0, false);
+		}
+	}
+
+	protected function validTreePos(ChunkManager $level, Vector3 $pos) : bool{
+		$state = $level->getBlockAt($pos->getFloorX(), $pos->getFloorY(), $pos->getFloorZ());
+
+		$canGrowThrough = false;
+		foreach ($this->canGrowThrough as $block) {
+			if ($state->isSameType($block)) {
+				$canGrowThrough = true;
+				break;
+			}
+		}
+
+		return parent::validTreePos($level, $pos) || $canGrowThrough;
+	}
+}

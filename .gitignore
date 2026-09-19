@@ -1,0 +1,16 @@
+/vendor/
+/build/
+/bin/
+/server-data/
+/plugins/
+/log_archive/
+/server.lock
+/server.log
+*.log
+*.lock
+*.phar
+*.phar.sig
+!composer.lock
+.idea/
+.vscode/
+.DS_Store

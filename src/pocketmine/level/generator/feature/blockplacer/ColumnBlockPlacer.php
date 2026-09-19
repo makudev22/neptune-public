@@ -1,0 +1,28 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\generator\feature\blockplacer;
+
+use pocketmine\block\Block;
+use pocketmine\level\ChunkManager;
+use pocketmine\math\Vector3;
+use pocketmine\utils\Random;
+
+class ColumnBlockPlacer implements BlockPlacer{
+
+	public function __construct(
+		private int $minSize,
+		private int $extraSize
+	){}
+
+	public function place(ChunkManager $level, Vector3 $pos, Block $state, Random $random) : void {
+		$i = $this->minSize + $random->nextBoundedInt($random->nextBoundedInt($this->extraSize + 1) + 1);
+
+		for($j = 0; $j < $i; ++$j) {
+			$level->setBlockAt($pos->x, $pos->y, $pos->z, $state);
+			$pos = $pos->up();
+		}
+	}
+}

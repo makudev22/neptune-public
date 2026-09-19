@@ -1,0 +1,130 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\tile;
+
+use pocketmine\level\ChunkManager;
+use pocketmine\level\format\Chunk;
+use pocketmine\level\Level;
+use pocketmine\nbt\NetworkLittleEndianNBTStream;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\nbt\tag\IntTag;
+use pocketmine\nbt\tag\StringTag;
+use pocketmine\network\mcpe\protocol\BlockActorDataPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\Player;
+
+abstract class Spawnable extends Tile
+{
+	/** @var string[] */
+	private array $spawnCompoundCache = [];
+	/** @var NetworkLittleEndianNBTStream|null */
+	private static $nbtWriter = null;
+
+	public function __construct(ChunkManager $level, CompoundTag $nbt){
+		parent::__construct($level, $nbt);
+
+		if ($level instanceof Level) {
+			$this->spawnToAll();
+		}
+	}
+
+	public function createSpawnPacket(int $protocolVersion = ProtocolInfo::CURRENT_PROTOCOL) : BlockActorDataPacket{
+		return BlockActorDataPacket::create($this->x, $this->y, $this->z, $this->getSerializedSpawnCompound($protocolVersion));
+	}
+
+	public function spawnTo(Player $player) : bool
+	{
+		if ($this->closed) {
+			return false;
+		}
+
+		$player->dataPacket($this->createSpawnPacket($player->getProtocolVersion()));
+
+		return true;
+	}
+
+	public function spawnToAll() : void
+	{
+		if ($this->closed) {
+			return;
+		}
+
+		/** @var Player[][] $protocolPlayers */
+		$protocolPlayers = [];
+		foreach ($this->level->getChunkPlayers($this->getFloorX() >> Chunk::COORD_BIT_SIZE, $this->getFloorZ() >> Chunk::COORD_BIT_SIZE) as $player) {
+			$protocolPlayers[$player->getProtocolVersion()][] = $player;
+		}
+
+		foreach ($protocolPlayers as $protocolVersion => $players) {
+			$packet = $this->createSpawnPacket($protocolVersion);
+
+			foreach ($players as $player) {
+				$player->sendDataPacket($packet);
+			}
+		}
+	}
+
+	/**
+	 * Performs actions needed when the tile is modified, such as clearing caches and respawning the tile to players.
+	 * WARNING: This MUST be called to clear spawn-compound and chunk caches when the tile's spawn compound has changed!
+	 */
+	protected function onChanged() : void
+	{
+		if ($this->level instanceof Level) {
+			$this->spawnCompoundCache = [];
+			$this->spawnToAll();
+
+			$this->level->clearChunkCache($this->getFloorX() >> Chunk::COORD_BIT_SIZE, $this->getFloorZ() >> Chunk::COORD_BIT_SIZE);
+		}
+	}
+
+	/**
+	 * Returns encoded NBT (varint, little-endian) used to spawn this tile to clients. Uses cache where possible,
+	 * populates cache if it is null.
+	 *
+	 * @phpstan-return string
+	 */
+	final public function getSerializedSpawnCompound(int $protocolVersion = ProtocolInfo::CURRENT_PROTOCOL) : string
+	{
+		if (!isset($this->spawnCompoundCache[$protocolVersion])) {
+			if (self::$nbtWriter === null) {
+				self::$nbtWriter = new NetworkLittleEndianNBTStream();
+			}
+
+			$this->spawnCompoundCache[$protocolVersion] = self::$nbtWriter->write($this->getSpawnCompound($protocolVersion));
+		}
+
+		return $this->spawnCompoundCache[$protocolVersion];
+	}
+
+	final public function getSpawnCompound(int $protocolVersion = ProtocolInfo::CURRENT_PROTOCOL) : CompoundTag
+	{
+		$nbt = new CompoundTag("", [
+			new StringTag(self::TAG_ID, static::getSaveId()),
+			new IntTag(self::TAG_X, $this->x),
+			new IntTag(self::TAG_Y, $this->y),
+			new IntTag(self::TAG_Z, $this->z)
+		]);
+		$this->addAdditionalSpawnData($nbt, $protocolVersion);
+		return $nbt;
+	}
+
+	/**
+	 * An extension to getSpawnCompound() for
+	 * further modifying the generic tile NBT.
+	 */
+	abstract protected function addAdditionalSpawnData(CompoundTag $nbt, int $protocolVersion) : void;
+
+	/**
+	 * Called when a player updates a block entity's NBT data
+	 * for example when writing on a sign.
+	 *
+	 * @return bool indication of success, will respawn the tile to the player if false.
+	 */
+	public function updateCompoundTag(CompoundTag $nbt, Player $player) : bool{
+		return false;
+	}
+}

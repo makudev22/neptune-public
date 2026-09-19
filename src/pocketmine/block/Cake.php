@@ -1,0 +1,141 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\block;
+
+use pocketmine\block\utils\StaticSupportTrait;
+use pocketmine\entity\EffectInstance;
+use pocketmine\entity\Living;
+use pocketmine\item\FoodSource;
+use pocketmine\item\Item;
+use pocketmine\item\ItemBlock;
+use pocketmine\math\AxisAlignedBB;
+use pocketmine\math\Facing;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\Player;
+
+class Cake extends Transparent implements FoodSource
+{
+	use StaticSupportTrait;
+
+	protected $id = self::CAKE_BLOCK;
+
+	protected $itemId = Item::CAKE;
+
+	public function __construct(int $meta = 0)
+	{
+		$this->meta = $meta;
+	}
+
+	public function getHardness() : float
+	{
+		return 0.5;
+	}
+
+	public function getName() : string
+	{
+		return "Cake";
+	}
+
+	protected function recalculateBoundingBox() : ?AxisAlignedBB
+	{
+
+		$f = $this->getDamage() * 0.125; //1 slice width
+
+		return new AxisAlignedBB(
+			$this->x + 0.0625 + $f,
+			$this->y,
+			$this->z + 0.0625,
+			$this->x + 1 - 0.0625,
+			$this->y + 0.5,
+			$this->z + 1 - 0.0625
+		);
+	}
+
+	protected function canBeSupportedAt(Block $block) : bool{
+		return $block->getSide(Facing::DOWN)->getId() !== BlockIds::AIR;
+	}
+
+	public function getDropsForCompatibleTool(Item $item) : array
+	{
+		return [];
+	}
+
+	public function isAffectedBySilkTouch() : bool
+	{
+		return false;
+	}
+
+	public function onActivate(Item $item, Player $player = null) : bool
+	{
+		if ($this->meta === 0 && $item instanceof ItemBlock) {
+			$block = $item->getBlock();
+			if ($block instanceof Candle) {
+				$this->level->broadcastLevelSoundEvent($this, LevelSoundEventPacket::SOUND_CAKE_ADD_CANDLE);
+				$this->level->setBlock($this, BlockFactory::get($block->getCandleCakeId()));
+				$item->pop();
+				return true;
+			}
+		}
+
+		if ($player !== null) {
+			$player->consumeObject($this);
+			return true;
+		}
+
+		return false;
+	}
+
+	public function getFoodRestore() : int
+	{
+		return 2;
+	}
+
+	public function getSaturationRestore() : float
+	{
+		return 0.4;
+	}
+
+	public function requiresHunger() : bool
+	{
+		return true;
+	}
+
+	public function getVariantBitmask() : int
+	{
+		return 0;
+	}
+
+	/**
+	 * @return Block
+	 */
+	public function getResidue()
+	{
+		$clone = clone $this;
+		$clone->meta++;
+		if ($clone->meta > 0x06) {
+			$clone = BlockFactory::get(Block::AIR);
+		}
+		return $clone;
+	}
+
+	/**
+	 * @return EffectInstance[]
+	 */
+	public function getAdditionalEffects() : array
+	{
+		return [];
+	}
+
+	public function onConsume(Living $consumer) : void
+	{
+		$this->level->setBlock($this, $this->getResidue());
+	}
+
+	public function canStartUsingItem(Player $player) : bool
+	{
+		return false;
+	}
+}

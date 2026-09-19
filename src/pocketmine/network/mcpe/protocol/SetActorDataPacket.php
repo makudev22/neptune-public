@@ -1,0 +1,60 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\network\mcpe\protocol;
+
+use pocketmine\network\mcpe\NetworkSession;
+use pocketmine\network\mcpe\protocol\types\entity\PropertySyncData;
+
+class SetActorDataPacket extends DataPacket
+{
+	public const NETWORK_ID = ProtocolInfo::SET_ACTOR_DATA_PACKET;
+
+	/** @var int */
+	public $entityRuntimeId;
+	/** @var array */
+	public $metadata;
+	/** @var PropertySyncData */
+	public $syncedProperties = null;
+	/** @var int */
+	public $tick = 0;
+
+	protected function decodePayload() : void
+	{
+		$this->entityRuntimeId = $this->getEntityRuntimeId();
+		$this->metadata = $this->getEntityMetadata();
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_419) {
+			if ($this->protocol >= ProtocolInfo::PROTOCOL_557) {
+				$this->syncedProperties = PropertySyncData::read($this);
+			}
+			$this->tick = $this->getUnsignedVarLong();
+		}
+	}
+
+	protected function encodePayload() : void
+	{
+		$this->putEntityRuntimeId($this->entityRuntimeId);
+		$this->putEntityMetadata($this->metadata);
+		if ($this->protocol >= ProtocolInfo::PROTOCOL_419) {
+			if ($this->protocol >= ProtocolInfo::PROTOCOL_557) {
+				if ($this->syncedProperties === null) {
+					$this->syncedProperties = new PropertySyncData([], []);
+				}
+				$this->syncedProperties->write($this);
+			}
+			$this->putUnsignedVarLong($this->tick);
+		}
+	}
+
+	public function mustBeDecoded() : bool
+	{
+		return false;
+	}
+
+	public function handle(NetworkSession $session) : bool
+	{
+		return $session->handleSetActorData($this);
+	}
+}

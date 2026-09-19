@@ -1,0 +1,87 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\tile;
+
+use pocketmine\item\Item;
+use pocketmine\item\ItemFactory;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\network\mcpe\convert\block\BlockProtocolConvertor;
+use pocketmine\network\mcpe\convert\block\RuntimeBlockMapping;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+
+class FlowerPot extends Spawnable
+{
+	public const TAG_ITEM = "item";
+	public const TAG_ITEM_DATA = "mData";
+	private const TAG_PLANT_BLOCK = "PlantBlock";
+
+	/** @var Item */
+	private $item;
+
+	protected function readSaveData(CompoundTag $nbt) : void
+	{
+		$this->item = ItemFactory::get($nbt->getShort(self::TAG_ITEM, 0, true), $nbt->getInt(self::TAG_ITEM_DATA, 0, true), 1);
+	}
+
+	protected function writeSaveData(CompoundTag $nbt) : void
+	{
+		$nbt->setShort(self::TAG_ITEM, $this->item->getId());
+		$nbt->setInt(self::TAG_ITEM_DATA, $this->item->getDamage());
+	}
+
+	public function getItem() : Item
+	{
+		return clone $this->item;
+	}
+
+	/**
+	 * @return void
+	 */
+	public function setItem(Item $item)
+	{
+		$this->item = clone $item;
+
+		$this->onChanged();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function removeItem()
+	{
+		$this->setItem(ItemFactory::get(Item::AIR, 0, 0));
+	}
+
+	public function isEmpty() : bool
+	{
+		return $this->getItem()->isNull();
+	}
+
+	protected function addAdditionalSpawnData(CompoundTag $nbt, int $protocolVersion) : void
+	{
+		$item = $this->item;
+		if ($protocolVersion >= ProtocolInfo::PROTOCOL_419) {
+			if(!$item->isNull()){
+				$runtimeBlockMapping = RuntimeBlockMapping::getInstance($protocolVersion);
+				$block = $item->getBlock();
+				$blockProtocol = BlockProtocolConvertor::getInstance()->get($block, $protocolVersion) ?? $block;
+				$plantNbt = $runtimeBlockMapping->toNbtBlock($runtimeBlockMapping->toRuntimeId($blockProtocol->getFullId()), true);
+				$plantNbt->setName(self::TAG_PLANT_BLOCK);
+				$nbt->setTag($plantNbt);
+			}
+		} else {
+			[$id, $meta] = [$item->getId(), $item->getDamage()];
+
+			$itemProtocol = $item->getItemProtocol($protocolVersion);
+			if ($itemProtocol !== null) {
+				[$id, $meta] = [$itemProtocol->getId(), $itemProtocol->getMeta()];
+			}
+
+			$nbt->setShort(self::TAG_ITEM, $id);
+			$nbt->setInt(self::TAG_ITEM_DATA, $meta);
+		}
+	}
+}

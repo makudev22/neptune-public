@@ -1,0 +1,51 @@
+<?php
+
+
+declare(strict_types=1);
+
+namespace pocketmine\level\sound;
+
+use pocketmine\block\Block;
+use pocketmine\entity\Entity;
+use pocketmine\math\Vector3;
+use pocketmine\network\mcpe\convert\block\BlockProtocolConvertor;
+use pocketmine\network\mcpe\convert\block\RuntimeBlockMapping;
+use pocketmine\network\mcpe\protocol\AddActorPacket;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\Player;
+
+final class EntityLandSound extends Sound
+{
+	public function __construct(
+		Vector3 $pos,
+		private Entity $entity,
+		private Block $blockLandedOn
+	) {
+		parent::__construct($pos->getFloorX(), $pos->getFloorY(), $pos->getFloorZ());
+	}
+
+	public function encode()
+	{
+		$blockLandedOn = BlockProtocolConvertor::getInstance()->get($this->blockLandedOn, $this->protocol) ?? $this->blockLandedOn;
+		return [LevelSoundEventPacket::create(
+			LevelSoundEventPacket::SOUND_FALL,
+			$this,
+			($this->protocol >= ProtocolInfo::PROTOCOL_407 ?
+				RuntimeBlockMapping::getInstance($this->protocol)->toRuntimeId($blockLandedOn->getFullId()) :
+				$blockLandedOn->getId()),
+			($this->entity instanceof Player ?
+				"minecraft:player" :
+				(AddActorPacket::LEGACY_ID_MAP_BC[$this->entity::NETWORK_ID] ?? ":")), //TODO: bad hack, stuff depends on players having a -1 network ID :(
+			false, //TODO: is isBaby relevant here?
+			false,
+			$this->entity->getId(),
+			null
+		)];
+	}
+
+	public function isUseProtocol() : bool
+	{
+		return true;
+	}
+}
