@@ -234,7 +234,7 @@ class SerializedSkin
 		$this->premiumSkin = $premiumSkin;
 		$this->personaSkin = $personaSkin;
 		$this->capeOnClassicSkin = $capeOnClassicSkin;
-		$this->fullSkinId = $fullSkinId ?? $this->generateFullSkinId();
+		$this->fullSkinId = $fullSkinId === null || $fullSkinId === "" ? $this->generateFullSkinId() : $fullSkinId;
 		$this->armSize = $armSize;
 		$this->skinColor = $skinColor;
 		$this->personaPieces = $personaPieces;

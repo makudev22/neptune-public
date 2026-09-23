@@ -3000,7 +3000,7 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer
                                 $packet->clientData["PremiumSkin"] ?? false,
                                 $packet->clientData["PersonaSkin"] ?? false,
                                 $packet->clientData["CapeOnClassicSkin"] ?? false,
-								$packet->clientData["FullSkinId"] ?? "",
+								$packet->clientData["FullSkinId"] ?? null,
                                 $armSize,
                                 $skinColor,
                                 $personaPieces,

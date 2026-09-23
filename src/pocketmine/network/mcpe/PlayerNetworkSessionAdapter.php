@@ -86,7 +86,7 @@ class PlayerNetworkSessionAdapter extends NetworkSession {
 	private const INCOMING_GAME_PACKETS_PER_TICK = 2;
 	private const INCOMING_GAME_PACKETS_BUFFER_TICKS = 100;
 
-	protected ?string $lastRequestedFullSkinId = null;
+	protected ?string $lastRequestedSkinHash = null;
 
 	protected PacketRateLimiter $gamePacketLimiter;
 
@@ -408,13 +408,14 @@ class PlayerNetworkSessionAdapter extends NetworkSession {
 	{
 		$skin = $packet->skin;
 
-		if ($skin->getSerializedSkin()->getFullSkinId() === $this->lastRequestedFullSkinId) {
+		$skinHash = hash("sha256", serialize($skin->getSerializedSkin()));
+		if ($skinHash === $this->lastRequestedSkinHash) {
 			//TODO: HACK! In 1.19.60, the client sends its skin back to us if we sent it a skin different from the one
 			//it's using. We need to prevent this from causing a feedback loop.
 			$this->server->getLogger()->debug("Refused duplicate skin change request");
 			return true;
 		}
-		$this->lastRequestedFullSkinId = $skin->getSerializedSkin()->getFullSkinId();
+		$this->lastRequestedSkinHash = $skinHash;
 
 		if (!$skin->isValid()) {
 			return false;
