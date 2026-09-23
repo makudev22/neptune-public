@@ -1,10 +1,16 @@
 param(
     [string]$Php = $env:NEPTUNE_PHP,
-    [string]$DataPath = '.\server-data'
+    [string]$DataPath = $env:NEPTUNE_DATA
 )
 
 $ErrorActionPreference = 'Stop'
+$callerDirectory = (Get-Location).Path
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+if ([string]::IsNullOrWhiteSpace($DataPath)) {
+    $DataPath = Join-Path $root 'server-data'
+} elseif (-not [System.IO.Path]::IsPathRooted($DataPath)) {
+    $DataPath = [System.IO.Path]::GetFullPath((Join-Path $callerDirectory $DataPath))
+}
 Set-Location $root
 
 if ([string]::IsNullOrWhiteSpace($Php)) {
@@ -23,4 +29,5 @@ if (-not (Test-Path -LiteralPath $phar)) {
     throw 'build\Neptune.phar is missing. Run .\build.ps1 first.'
 }
 
-& $Php $phar "--data=$DataPath" "--plugins=$DataPath\plugins" --settings.enable-dev-builds=true
+& $Php $phar "--data=$DataPath" "--plugins=$(Join-Path $DataPath 'plugins')" --settings.enable-dev-builds=true
+exit $LASTEXITCODE
