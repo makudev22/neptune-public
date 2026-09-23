@@ -9,16 +9,17 @@ if (ini_get('phar.readonly') === '1') {
 
 $root = dirname(__DIR__);
 $outputDirectory = $root . DIRECTORY_SEPARATOR . 'build';
-$output = $outputDirectory . DIRECTORY_SEPARATOR . 'Neptune.phar';
+$outputName = $argv[1] ?? 'Neptune.phar';
+if (basename($outputName) !== $outputName || !str_ends_with($outputName, '.phar')) {
+	throw new InvalidArgumentException('Output must be a PHAR filename');
+}
+$output = $outputDirectory . DIRECTORY_SEPARATOR . $outputName;
+$temporary = $outputDirectory . DIRECTORY_SEPARATOR . 'Neptune-' . bin2hex(random_bytes(8)) . '.phar';
 
 if (!is_dir($outputDirectory) && !mkdir($outputDirectory, 0777, true) && !is_dir($outputDirectory)) {
 	throw new RuntimeException('Unable to create build directory');
 }
-if (is_file($output) && !unlink($output)) {
-	throw new RuntimeException('Unable to replace existing PHAR');
-}
-
-$phar = new Phar($output, 0, 'Neptune.phar');
+$phar = new Phar($temporary, 0, 'Neptune.phar');
 $phar->startBuffering();
 
 foreach (['src', 'vendor', 'LICENSE', 'README.md'] as $path) {
@@ -40,5 +41,10 @@ $phar->buildFromIterator($files, $root);
 $phar->setStub("<?php Phar::mapPhar('Neptune.phar'); require 'phar://Neptune.phar/src/pocketmine/PocketMine.php'; __HALT_COMPILER();");
 $phar->setSignatureAlgorithm(Phar::SHA256);
 $phar->stopBuffering();
+unset($phar);
+
+if (!rename($temporary, $output)) {
+	throw new RuntimeException("Unable to replace $output; completed build remains at $temporary");
+}
 
 echo $output . PHP_EOL;

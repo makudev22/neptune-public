@@ -234,7 +234,6 @@ class SerializedSkin
 		$this->premiumSkin = $premiumSkin;
 		$this->personaSkin = $personaSkin;
 		$this->capeOnClassicSkin = $capeOnClassicSkin;
-		$this->fullSkinId = $fullSkinId === null || $fullSkinId === "" ? $this->generateFullSkinId() : $fullSkinId;
 		$this->armSize = $armSize;
 		$this->skinColor = $skinColor;
 		$this->personaPieces = $personaPieces;
@@ -243,6 +242,7 @@ class SerializedSkin
 		$this->override = $override;
 		$this->trustedSkinFlag = $trustedSkinFlag;
 		$this->profileHash = $profileHash;
+		$this->fullSkinId = $fullSkinId === null || $fullSkinId === "" ? $this->generateFullSkinId() : $fullSkinId;
 	}
 
 	public function getSkinId() : string
@@ -442,7 +442,10 @@ class SerializedSkin
 			(string) $this->premiumSkin,
 			(string) $this->personaSkin,
 			(string) $this->capeOnClassicSkin,
-			$this->capeId
+			$this->capeId,
+			$this->armSize,
+			serialize($this->personaPieces),
+			serialize($this->pieceTintColors)
 		)->toString();
 	}
 

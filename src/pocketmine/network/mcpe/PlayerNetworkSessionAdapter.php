@@ -407,6 +407,9 @@ class PlayerNetworkSessionAdapter extends NetworkSession {
 	public function handlePlayerSkin(PlayerSkinPacket $packet) : bool
 	{
 		$skin = $packet->skin;
+		if (!$skin->isValid()) {
+			return false;
+		}
 
 		$skinHash = hash("sha256", serialize($skin->getSerializedSkin()));
 		if ($skinHash === $this->lastRequestedSkinHash) {
@@ -416,10 +419,6 @@ class PlayerNetworkSessionAdapter extends NetworkSession {
 			return true;
 		}
 		$this->lastRequestedSkinHash = $skinHash;
-
-		if (!$skin->isValid()) {
-			return false;
-		}
 
 		$this->server->getLogger()->debug("Processing skin change request for " . $this->player->getName());
 		return $this->player->changeSkin($skin, $packet->newSkinName, $packet->oldSkinName);

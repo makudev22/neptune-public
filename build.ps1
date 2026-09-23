@@ -26,4 +26,6 @@ if (-not (Test-Path -LiteralPath (Join-Path $root 'vendor\autoload.php'))) {
 }
 
 & $Php -d phar.readonly=0 .\tools\build-phar.php
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & $Php .\tools\verify-protocols.php
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

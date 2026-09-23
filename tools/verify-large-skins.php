@@ -11,6 +11,7 @@ use pocketmine\network\mcpe\protocol\PlayerSkinPacket;
 use pocketmine\network\mcpe\protocol\types\PlayerListEntry;
 use pocketmine\network\mcpe\NetworkBinaryStream;
 use pocketmine\network\mcpe\protocol\types\skin\SerializedSkin;
+use pocketmine\network\mcpe\protocol\types\skin\PersonaSkinPiece;
 use pocketmine\network\mcpe\protocol\types\skin\SkinImage;
 use pocketmine\utils\Color;
 use pocketmine\utils\UUID;
@@ -181,3 +182,30 @@ foreach ([ProtocolInfo::PROTOCOL_407, ProtocolInfo::PROTOCOL_2193] as $protocol)
 	}
 }
 echo "PASS: custom skins survive player packets\n";
+
+$personaSkin = static function (string $pieceId) use ($customData) : SerializedSkin {
+	return new SerializedSkin(
+		"custom_persona",
+		"",
+		new SkinImage(64, 64, $customData),
+		"",
+		SkinImage::empty(),
+		'{"geometry":{"default":"geometry.humanoid.custom"}}',
+		"",
+		"",
+		"",
+		[],
+		false,
+		true,
+		false,
+		"",
+		"wide",
+		new Color(0, 0, 0),
+		SplFixedArray::fromArray([new PersonaSkinPiece($pieceId, "persona_hair", "", false, "")]),
+		SplFixedArray::fromArray([])
+	);
+};
+if ($personaSkin("hair_one")->getFullSkinId() === $personaSkin("hair_two")->getFullSkinId()) {
+	throw new RuntimeException("Different persona skins share a full skin ID");
+}
+echo "PASS: persona skin IDs reflect their pieces\n";
