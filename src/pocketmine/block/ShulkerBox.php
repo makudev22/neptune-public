@@ -52,6 +52,9 @@ class ShulkerBox extends Transparent
 		if ($player instanceof Player) {
 			$tile = $this->getLevel()->getTile($this);
 			if ($tile instanceof TileShulkerBox) {
+				if (!$tile->canOpenWith($item->getCustomName())) {
+					return true;
+				}
 				$player->addWindow($tile->getInventory());
 			}
 		}
@@ -80,7 +83,7 @@ class ShulkerBox extends Transparent
 			return [$drop];
 		}
 
-		return [];
+		return [$this->asItem()];
 	}
 
 	public function onBreak(Item $item, Player $player = null) : bool
