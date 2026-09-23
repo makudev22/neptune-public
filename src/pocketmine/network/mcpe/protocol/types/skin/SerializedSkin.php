@@ -12,7 +12,6 @@ use pocketmine\utils\Color;
 use pocketmine\utils\UUID;
 use SplFixedArray;
 
-use function array_rand;
 use function file_get_contents;
 use function json_decode;
 use function json_encode;
@@ -261,6 +260,14 @@ class SerializedSkin
 		return $this->skinImage;
 	}
 
+	public function withSkinImage(SkinImage $image) : self
+	{
+		$skin = clone $this;
+		$skin->skinImage = $image;
+		$skin->fullSkinId = $skin->generateFullSkinId();
+		return $skin;
+	}
+
 	public function getCapeId() : string
 	{
 		return $this->capeId;
@@ -374,20 +381,22 @@ class SerializedSkin
 		if (!(
 			($this->skinImage->getWidth() === 64 && ($this->skinImage->getHeight() === 32 || $this->skinImage->getHeight() === 64))
 			||
-			($this->skinImage->getWidth() === 128 && ($this->skinImage->getHeight() === 128))
+			($this->skinImage->getWidth() === 128 && $this->skinImage->getHeight() === 128)
+			||
+			($this->skinImage->getWidth() === 256 && ($this->skinImage->getHeight() === 128 || $this->skinImage->getHeight() === 256))
 		)) {
 			self::$defaultSkins = self::$defaultSkins ?? [
 				"steve" => new Skin("Standard_Steve", file_get_contents(RESOURCE_PATH . '/vanilla/skins/steve.skindata')),
 				"alex" => new Skin("Standard_Alex", file_get_contents(RESOURCE_PATH . '/vanilla/skins/alex.skindata')),
 			];
 
-			$skin = self::$defaultSkins[array_rand(self::$defaultSkins)];
+			$skin = clone self::$defaultSkins[$this->armSize === self::ARM_SIZE_SLIM ? "alex" : "steve"];
 			$skin->setSerializedSkin($this);
 
 			return $skin;
 		}
 
-		$skinGeometryData = (new Comment())->decode($this->geometryData, true);
+		$skinGeometryData = $this->geometryData === "" ? [] : (new Comment())->decode($this->geometryData, true);
 		if (isset($skinGeometryData["format_version"])) {
 			unset($skinGeometryData["format_version"]);
 			if (isset($skinGeometryData["minecraft:geometry"])) {

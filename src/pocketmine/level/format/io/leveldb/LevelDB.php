@@ -581,6 +581,7 @@ class LevelDB extends BaseLevelProvider implements WritableLevelProvider
 
 		$write = new \LevelDBWriteBatch();
 		$write->put($index . ChunkDataKey::OLD_VERSION, chr(self::CURRENT_LEVEL_CHUNK_VERSION));
+		$write->delete($index . ChunkDataKey::NEW_VERSION);
 
 		$subChunks = $chunk->getSubChunks();
 		foreach ($subChunks as $y => $subChunk) {

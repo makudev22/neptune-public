@@ -33,6 +33,8 @@ class Skin
 		64 * 32 * 4,
 		64 * 64 * 4,
 		128 * 128 * 4,
+		256 * 128 * 4,
+		256 * 256 * 4,
 	];
 
 	private string $skinId;
@@ -145,6 +147,8 @@ class Skin
 	public function getClientFriendlySkinData(int $protocol) : string
 	{
 		static $sizes = [
+			256 * 256 * 4 => ProtocolInfo::PROTOCOL_2193,
+			256 * 128 * 4 => ProtocolInfo::PROTOCOL_2193,
 			128 * 128 * 4 => ProtocolInfo::PROTOCOL_407,
 			64 * 64 * 4 => ProtocolInfo::PROTOCOL_113,
 			64 * 32 * 4 => ProtocolInfo::PROTOCOL_113,
@@ -171,6 +175,8 @@ class Skin
 			64 * 32 * 4 => [64, 32],
 			64 * 64 * 4 => [64, 64],
 			128 * 128 * 4 => [128, 128],
+			256 * 128 * 4 => [256, 128],
+			256 * 256 * 4 => [256, 256],
 		];
 
 		if (!isset($dimensions[$skinSize])) {
@@ -197,7 +203,7 @@ class Skin
 				$g = ord($skinData[$skinPos + 1]);
 				$b = ord($skinData[$skinPos + 2]);
 				$a = ord($skinData[$skinPos + 3]);
-				$color = imagecolorallocatealpha($originalImage, $r, $g, $b, 127 - intdiv($a, 2));
+				$color = imagecolorallocatealpha($originalImage, $r, $g, $b, 127 - intdiv($a * 127 + 127, 255));
 				imagesetpixel($originalImage, $x, $y, $color);
 				$skinPos += 4;
 			}
@@ -212,7 +218,7 @@ class Skin
 		for ($y = 0; $y < $newH; $y++) {
 			for ($x = 0; $x < $newW; $x++) {
 				$color = @imagecolorat($resizedImage, $x, $y);
-				$a = 127 - (($color >> 24) & 0x7F);
+				$a = intdiv((127 - (($color >> 24) & 0x7F)) * 255 + 63, 127);
 				$r = ($color >> 16) & 0xFF;
 				$g = ($color >> 8) & 0xFF;
 				$b = $color & 0xFF;

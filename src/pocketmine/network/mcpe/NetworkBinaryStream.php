@@ -191,7 +191,11 @@ class NetworkBinaryStream extends BinaryStream
 	}
 
 	public function putSkin(Skin $skin) : void{
-		$skin = $skin->getSerializedSkin();
+		$serializedSkin = $skin->getSerializedSkin();
+		if ($this->protocol < ProtocolInfo::PROTOCOL_2193 && strlen($skin->getSkinData()) > 128 * 128 * 4) {
+			$serializedSkin = $serializedSkin->withSkinImage(SkinImage::fromLegacy($skin->getClientFriendlySkinData($this->protocol)));
+		}
+		$skin = $serializedSkin;
 		$this->putString($skin->getSkinId());
 		if ($this->protocol >= ProtocolInfo::PROTOCOL_428) {
 			$this->putString($skin->getPlayFabId());
