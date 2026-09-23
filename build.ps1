@@ -3,7 +3,11 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$callerDirectory = (Get-Location).Path
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+if (-not [string]::IsNullOrWhiteSpace($Php) -and -not [System.IO.Path]::IsPathRooted($Php)) {
+    $Php = [System.IO.Path]::GetFullPath((Join-Path $callerDirectory $Php))
+}
 Set-Location $root
 
 if ([string]::IsNullOrWhiteSpace($Php)) {

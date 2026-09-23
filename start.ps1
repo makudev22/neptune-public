@@ -6,6 +6,9 @@ param(
 $ErrorActionPreference = 'Stop'
 $callerDirectory = (Get-Location).Path
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+if (-not [string]::IsNullOrWhiteSpace($Php) -and -not [System.IO.Path]::IsPathRooted($Php)) {
+    $Php = [System.IO.Path]::GetFullPath((Join-Path $callerDirectory $Php))
+}
 if ([string]::IsNullOrWhiteSpace($DataPath)) {
     $DataPath = Join-Path $root 'server-data'
 } elseif (-not [System.IO.Path]::IsPathRooted($DataPath)) {
