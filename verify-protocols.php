@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-require dirname(__DIR__) . '/src/pocketmine/CoreConstants.php';
-require dirname(__DIR__) . '/vendor/autoload.php';
+require __DIR__ . '/src/pocketmine/CoreConstants.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use pocketmine\network\mcpe\convert\PacketIdTranslator;
 use pocketmine\network\mcpe\convert\ProtocolConvertor;
@@ -105,7 +105,7 @@ foreach ([ProtocolInfo::PROTOCOL_2193] as $protocol) {
 	}
 
 	foreach (['required_item_list.json', 'r16_to_current_item_map.json', 'item_id_map.json'] as $file) {
-		$path = dirname(__DIR__) . "/src/pocketmine/resources/vanilla/items/$protocol/$file";
+		$path = __DIR__ . "/src/pocketmine/resources/vanilla/items/$protocol/$file";
 		$data = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
 		if ($data === []) {
 			throw new RuntimeException("Protocol $protocol has an empty item resource: $file");

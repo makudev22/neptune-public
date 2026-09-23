@@ -47,7 +47,7 @@
     }
   },
   "scripts": {
-    "build": "@php -d phar.readonly=0 tools/build-phar.php",
-    "verify-protocols": "@php tools/verify-protocols.php"
+    "build": "@php -d phar.readonly=0 build-phar.php",
+    "verify-protocols": "@php verify-protocols.php"
   }
 }

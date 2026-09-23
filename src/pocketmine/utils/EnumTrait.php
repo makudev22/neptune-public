@@ -14,7 +14,6 @@ use function getmypid;
  * __callStatic().
  *
  * Classes using this trait need to include \@method tags in their class docblock for every enum member.
- * Alternatively, just put \@generate-registry-docblock in the docblock and run tools/generate-registry-annotations.php
  */
 trait EnumTrait
 {

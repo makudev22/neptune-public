@@ -7,7 +7,7 @@ if (ini_get('phar.readonly') === '1') {
 	exit(1);
 }
 
-$root = dirname(__DIR__);
+$root = __DIR__;
 $outputDirectory = $root . DIRECTORY_SEPARATOR . 'build';
 $outputName = $argv[1] ?? 'Neptune.phar';
 if (basename($outputName) !== $outputName || !str_ends_with($outputName, '.phar')) {
