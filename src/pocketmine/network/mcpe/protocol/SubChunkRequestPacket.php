@@ -14,6 +14,7 @@ use function count;
 class SubChunkRequestPacket extends DataPacket
 {
 	public const NETWORK_ID = ProtocolInfo::SUB_CHUNK_REQUEST_PACKET;
+	private const MAX_ENTRIES = 256;
 
 	private int $dimension;
 	private SubChunkPosition $basePosition;
@@ -60,7 +61,11 @@ class SubChunkRequestPacket extends DataPacket
 	{
 		$this->dimension = $this->getVarInt();
 		if ($this->protocol >= ProtocolInfo::PROTOCOL_1001) {
-			for ($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; $i++) {
+			$count = $this->getUnsignedVarInt();
+			if ($count > self::MAX_ENTRIES) {
+				throw new PacketDecodeException("Too many subchunk request entries: $count");
+			}
+			for ($i = 0; $i < $count; $i++) {
 				$this->entries[] = SubChunkPositionOffset::read($this);
 			}
 

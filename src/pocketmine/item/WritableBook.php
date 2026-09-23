@@ -14,6 +14,8 @@ use pocketmine\network\mcpe\protocol\ProtocolInfo;
 
 class WritableBook extends Item
 {
+	public const MAX_PAGES = 100;
+
 	public const TAG_PAGES = "pages"; //TAG_List<TAG_Compound>
 	public const TAG_PAGE_TEXT = "text"; //TAG_String
 	public const TAG_PAGE_PHOTONAME = "photoname"; //TAG_String - TODO
@@ -79,7 +81,7 @@ class WritableBook extends Item
 	 */
 	public function addPage(int $pageId) : void
 	{
-		if ($pageId < 0) {
+		if ($pageId < 0 || $pageId >= self::MAX_PAGES) {
 			throw new InvalidArgumentException("Page number \"$pageId\" is out of range");
 		}
 

@@ -21,6 +21,7 @@ use function count;
 class InventoryTransactionPacket extends DataPacket
 {
 	public const NETWORK_ID = ProtocolInfo::INVENTORY_TRANSACTION_PACKET;
+	private const MAX_CHANGED_SLOT_CONTAINERS = 128;
 
 	public const TYPE_NORMAL = 0;
 	public const TYPE_MISMATCH = 1;
@@ -44,7 +45,11 @@ class InventoryTransactionPacket extends DataPacket
 
 			$this->requestChangedSlots = [];
 			if ($hasChangedSlots) {
-				for ($i = 0, $len = $this->getUnsignedVarInt(); $i < $len; ++$i) {
+				$len = $this->getUnsignedVarInt();
+				if ($len > self::MAX_CHANGED_SLOT_CONTAINERS) {
+					throw new PacketDecodeException("Too many changed slot containers: $len");
+				}
+				for ($i = 0; $i < $len; ++$i) {
 					$this->requestChangedSlots[] = InventoryTransactionChangedSlotsHack::read($this);
 				}
 			}

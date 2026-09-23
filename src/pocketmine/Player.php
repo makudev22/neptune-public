@@ -5437,6 +5437,13 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer
                         throw new PacketHandlingException("String length is too long");
                 }
 
+                if (
+                        ($packet->type !== BookEditPacket::TYPE_SIGN_BOOK && $packet->pageNumber >= WritableBook::MAX_PAGES) ||
+                        ($packet->type === BookEditPacket::TYPE_SWAP_PAGES && $packet->secondaryPageNumber >= WritableBook::MAX_PAGES)
+                ) {
+                        throw new PacketHandlingException("Book page number out of range");
+                }
+
                 $newBook = clone $oldBook;
                 $modifiedPages = [];
 

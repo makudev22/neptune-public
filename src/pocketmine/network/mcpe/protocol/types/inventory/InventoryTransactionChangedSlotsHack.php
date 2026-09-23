@@ -6,11 +6,13 @@ declare(strict_types=1);
 namespace pocketmine\network\mcpe\protocol\types\inventory;
 
 use pocketmine\network\mcpe\NetworkBinaryStream;
+use pocketmine\network\mcpe\protocol\PacketDecodeException;
 
 use function count;
 
 final class InventoryTransactionChangedSlotsHack
 {
+	private const MAX_CHANGED_SLOTS = 128;
 	/**
 	 * @param int[] $changedSlotIndexes
 	 */
@@ -35,7 +37,11 @@ final class InventoryTransactionChangedSlotsHack
 	{
 		$containerId = $in->getByte();
 		$changedSlots = [];
-		for ($i = 0, $len = $in->getUnsignedVarInt(); $i < $len; ++$i) {
+		$len = $in->getUnsignedVarInt();
+		if ($len > self::MAX_CHANGED_SLOTS) {
+			throw new PacketDecodeException("Too many changed slots: $len");
+		}
+		for ($i = 0; $i < $len; ++$i) {
 			$changedSlots[] = $in->getByte();
 		}
 		return new self($containerId, $changedSlots);

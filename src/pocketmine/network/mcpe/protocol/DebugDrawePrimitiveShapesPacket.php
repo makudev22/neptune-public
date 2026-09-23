@@ -12,6 +12,7 @@ use function count;
 class DebugDrawePrimitiveShapesPacket extends DataPacket
 {
 	public const NETWORK_ID = ProtocolInfo::PRIMITIVE_SHAPES_PACKET;
+	private const MAX_SHAPES = 256;
 
 	/**
 	 * @var PacketShapeData[]
@@ -43,7 +44,11 @@ class DebugDrawePrimitiveShapesPacket extends DataPacket
 	protected function decodePayload() : void
 	{
 		$this->shapes = [];
-		for ($i = 0, $len = $this->getUnsignedVarInt(); $i < $len; ++$i) {
+		$len = $this->getUnsignedVarInt();
+		if ($len > self::MAX_SHAPES) {
+			throw new PacketDecodeException("Too many primitive shapes: $len");
+		}
+		for ($i = 0; $i < $len; ++$i) {
 			$this->shapes[] = PacketShapeData::read($this);
 		}
 	}

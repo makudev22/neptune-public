@@ -15,6 +15,7 @@ use function count;
 class ServerboundDiagnosticsPacket extends DataPacket
 {
 	public const NETWORK_ID = ProtocolInfo::SERVERBOUND_DIAGNOSTICS_PACKET;
+	private const MAX_ENTRIES = 1024;
 
 	public float $avgFps;
 	public float $avgServerSimTickTimeMS;
@@ -59,24 +60,40 @@ class ServerboundDiagnosticsPacket extends DataPacket
 		$this->avgUnaccountedTimePercent = $this->getLFloat();
 
 		$this->memoryCategoryValues = [];
-		for($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; $i++){
+		$count = $this->getUnsignedVarInt();
+		if($count > self::MAX_ENTRIES){
+			throw new PacketDecodeException("Too many memory category values: $count");
+		}
+		for($i = 0; $i < $count; $i++){
 			$this->memoryCategoryValues[] = MemoryCategoryCounter::read($this);
 		}
 
 		if ($this->getProtocol() >= ProtocolInfo::PROTOCOL_975) {
 			$this->entityDiagnostics = [];
-			for($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; $i++){
+			$count = $this->getUnsignedVarInt();
+			if($count > self::MAX_ENTRIES){
+				throw new PacketDecodeException("Too many entity diagnostics: $count");
+			}
+			for($i = 0; $i < $count; $i++){
 				$this->entityDiagnostics[] = EntityDiagnosticTimingInfo::read($this);
 			}
 
 			$this->systemDiagnostics = [];
-			for($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; $i++){
+			$count = $this->getUnsignedVarInt();
+			if($count > self::MAX_ENTRIES){
+				throw new PacketDecodeException("Too many system diagnostics: $count");
+			}
+			for($i = 0; $i < $count; $i++){
 				$this->systemDiagnostics[] = SystemDiagnosticTimingInfo::read($this);
 			}
 
 			if ($this->getProtocol() >= ProtocolInfo::PROTOCOL_1001) {
 				$this->whiskerScopes = [];
-				for ($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; $i++) {
+				$count = $this->getUnsignedVarInt();
+				if($count > self::MAX_ENTRIES){
+					throw new PacketDecodeException("Too many whisker scopes: $count");
+				}
+				for ($i = 0; $i < $count; $i++) {
 					$this->whiskerScopes[] = WhiskerScopeDataSummary::read($this);
 				}
 			}

@@ -13,6 +13,7 @@ use function count;
 class EmoteListPacket extends DataPacket
 {
 	public const NETWORK_ID = ProtocolInfo::EMOTE_LIST_PACKET;
+	private const MAX_EMOTES = 1024;
 
 	public int $playerEntityRuntimeId;
 	/** @var UUID[] */
@@ -44,7 +45,11 @@ class EmoteListPacket extends DataPacket
 	{
 		$this->playerEntityRuntimeId = $this->getEntityRuntimeId();
 		$this->emoteIds = [];
-		for ($i = 0, $len = $this->getUnsignedVarInt(); $i < $len; ++$i) {
+		$len = $this->getUnsignedVarInt();
+		if ($len > self::MAX_EMOTES) {
+			throw new PacketDecodeException("Too many emotes: $len");
+		}
+		for ($i = 0; $i < $len; ++$i) {
 			$this->emoteIds[] = $this->getUUID();
 		}
 	}

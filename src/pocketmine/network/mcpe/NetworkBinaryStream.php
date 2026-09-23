@@ -58,6 +58,10 @@ use function strlen;
 
 class NetworkBinaryStream extends BinaryStream
 {
+	private const MAX_ITEM_STACK_BLOCK_RESTRICTIONS = 256;
+	private const MAX_ATTRIBUTES = 128;
+	private const MAX_ATTRIBUTE_MODIFIERS = 128;
+
 
 	/** @var int[] */
 	public static array $shieldItemRuntimeIds = [];
@@ -518,22 +522,38 @@ class NetworkBinaryStream extends BinaryStream
 
 		if ($this->protocol >= ProtocolInfo::PROTOCOL_431) {
 			$canPlaceOn = [];
-			for ($i = 0, $canPlaceOnCount = $extraData->getLInt(); $i < $canPlaceOnCount; ++$i) {
+			$canPlaceOnCount = $extraData->getLInt();
+			if ($canPlaceOnCount < 0 || $canPlaceOnCount > self::MAX_ITEM_STACK_BLOCK_RESTRICTIONS) {
+				throw new PacketDecodeException("Invalid canPlaceOn count $canPlaceOnCount");
+			}
+			for ($i = 0; $i < $canPlaceOnCount; ++$i) {
 				$canPlaceOn[] = $extraData->get($extraData->getLShort());
 			}
 
 			$canDestroy = [];
-			for ($i = 0, $canDestroyCount = $extraData->getLInt(); $i < $canDestroyCount; ++$i) {
+			$canDestroyCount = $extraData->getLInt();
+			if ($canDestroyCount < 0 || $canDestroyCount > self::MAX_ITEM_STACK_BLOCK_RESTRICTIONS) {
+				throw new PacketDecodeException("Invalid canDestroy count $canDestroyCount");
+			}
+			for ($i = 0; $i < $canDestroyCount; ++$i) {
 				$canDestroy[] = $extraData->get($extraData->getLShort());
 			}
 		} else {
 			$canPlaceOn = [];
-			for ($i = 0, $canPlaceOnCount = $extraData->getVarInt(); $i < $canPlaceOnCount; ++$i) {
+			$canPlaceOnCount = $extraData->getVarInt();
+			if ($canPlaceOnCount < 0 || $canPlaceOnCount > self::MAX_ITEM_STACK_BLOCK_RESTRICTIONS) {
+				throw new PacketDecodeException("Invalid canPlaceOn count $canPlaceOnCount");
+			}
+			for ($i = 0; $i < $canPlaceOnCount; ++$i) {
 				$canPlaceOn[] = $extraData->getString();
 			}
 
 			$canDestroy = [];
-			for ($i = 0, $canDestroyCount = $extraData->getVarInt(); $i < $canDestroyCount; ++$i) {
+			$canDestroyCount = $extraData->getVarInt();
+			if ($canDestroyCount < 0 || $canDestroyCount > self::MAX_ITEM_STACK_BLOCK_RESTRICTIONS) {
+				throw new PacketDecodeException("Invalid canDestroy count $canDestroyCount");
+			}
+			for ($i = 0; $i < $canDestroyCount; ++$i) {
 				$canDestroy[] = $extraData->getString();
 			}
 		}
@@ -1062,6 +1082,9 @@ class NetworkBinaryStream extends BinaryStream
 	{
 		$list = [];
 		$count = $this->getUnsignedVarInt();
+		if ($count > self::MAX_ATTRIBUTES) {
+			throw new PacketDecodeException("Too many attributes: $count");
+		}
 
 		for ($i = 0; $i < $count; ++$i) {
 			$min = $this->getLFloat();
@@ -1075,7 +1098,11 @@ class NetworkBinaryStream extends BinaryStream
 			$name = $this->getString();
 			$modifiers = [];
 			if ($this->protocol >= ProtocolInfo::PROTOCOL_544) {
-				for ($j = 0, $modifierCount = $this->getUnsignedVarInt(); $j < $modifierCount; $j++) {
+				$modifierCount = $this->getUnsignedVarInt();
+				if ($modifierCount > self::MAX_ATTRIBUTE_MODIFIERS) {
+					throw new PacketDecodeException("Too many attribute modifiers: $modifierCount");
+				}
+				for ($j = 0; $j < $modifierCount; $j++) {
 					$modifiers[] = AttributeModifier::read($this);
 				}
 			}

@@ -14,6 +14,7 @@ use function count;
 
 abstract class TransactionData
 {
+	private const MAX_ACTIONS = 128;
 	/** @var NetworkInventoryAction[] */
 	protected array $actions = [];
 
@@ -40,6 +41,9 @@ abstract class TransactionData
 		}
 
 		$actionCount = $in->getUnsignedVarInt();
+		if ($actionCount > self::MAX_ACTIONS) {
+			throw new PacketDecodeException("Too many inventory actions: $actionCount");
+		}
 		for ($i = 0; $i < $actionCount; ++$i) {
 			$this->actions[] = (new NetworkInventoryAction())->read($in, $legacyTransaction, $this->hasItemStackIds);
 		}
