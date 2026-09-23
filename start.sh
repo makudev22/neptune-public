@@ -24,9 +24,9 @@ if [ -z "$php" ] || [ ! -x "$php" ]; then
 	exit 1
 fi
 
-phar="$root/build/Neptune.phar"
+phar="$root/build/Neptune-Unicore.phar"
 if [ ! -f "$phar" ]; then
-	printf '%s\n' 'build/Neptune.phar is missing. Build Neptune first.' >&2
+	printf '%s\n' 'build/Neptune-Unicore.phar is missing. Build Neptune Unicore first.' >&2
 	exit 1
 fi
 

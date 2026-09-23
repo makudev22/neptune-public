@@ -14,7 +14,7 @@ use function str_repeat;
 
 class VersionInfo
 {
-	public const NAME = "Neptune";
+	public const NAME = "Neptune Unicore";
 	public const BASE_VERSION = "3.28.0"; //Don't change this anymore. Change the FORK_VERSION instead.
 	public const FORK_VERSION = "3.0.0";
 	public const IS_DEVELOPMENT_BUILD = true;

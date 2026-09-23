@@ -9,7 +9,7 @@ if (ini_get('phar.readonly') === '1') {
 
 $root = __DIR__;
 $outputDirectory = $root . DIRECTORY_SEPARATOR . 'build';
-$outputName = $argv[1] ?? 'Neptune.phar';
+$outputName = $argv[1] ?? 'Neptune-Unicore.phar';
 if (basename($outputName) !== $outputName || !str_ends_with($outputName, '.phar')) {
 	throw new InvalidArgumentException('Output must be a PHAR filename');
 }
@@ -23,18 +23,18 @@ $archiveLock = fopen($output . '.lock', 'c+b');
 if ($archiveLock === false || !flock($archiveLock, LOCK_EX | LOCK_NB)) {
 	throw new RuntimeException("Cannot replace $output while it is in use");
 }
-if ($outputName === 'Neptune.phar') {
+if ($outputName === 'Neptune-Unicore.phar') {
 	$serverLockPath = $root . DIRECTORY_SEPARATOR . 'server-data' . DIRECTORY_SEPARATOR . 'server.lock';
 	if (is_file($serverLockPath)) {
 		$serverLock = fopen($serverLockPath, 'rb');
 		if ($serverLock === false || !flock($serverLock, LOCK_EX | LOCK_NB)) {
-			throw new RuntimeException('Stop the running Neptune server before rebuilding Neptune.phar');
+			throw new RuntimeException('Stop the running Neptune Unicore server before rebuilding Neptune-Unicore.phar');
 		}
 		flock($serverLock, LOCK_UN);
 		fclose($serverLock);
 	}
 }
-$phar = new Phar($temporary, 0, 'Neptune.phar');
+$phar = new Phar($temporary, 0, 'Neptune-Unicore.phar');
 $phar->startBuffering();
 
 foreach (['src', 'vendor', 'LICENSE', 'README.md'] as $path) {
@@ -53,7 +53,7 @@ $files = new CallbackFilterIterator($iterator, static function (SplFileInfo $fil
 });
 $phar->buildFromIterator($files, $root);
 
-$phar->setStub("<?php Phar::mapPhar('Neptune.phar'); require 'phar://Neptune.phar/src/pocketmine/PocketMine.php'; __HALT_COMPILER();");
+$phar->setStub("<?php Phar::mapPhar('Neptune-Unicore.phar'); require 'phar://Neptune-Unicore.phar/src/pocketmine/PocketMine.php'; __HALT_COMPILER();");
 $phar->setSignatureAlgorithm(Phar::SHA256);
 $phar->stopBuffering();
 unset($phar);

@@ -1,6 +1,6 @@
 {
-  "name": "neptune/neptune",
-  "description": "Neptune — открытое ядро MC:BE.",
+  "name": "neptune/unicore",
+  "description": "Neptune Unicore — экспериментальная ветка совместимости плагинов MC:BE.",
   "type": "project",
   "license": "MIT",
   "repositories": [
