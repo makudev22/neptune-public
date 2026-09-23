@@ -1,23 +1,12 @@
 # Neptune
 
-Neptune — открытое ядро Minecraft: Bedrock Edition.
+Neptune — открытое ядро Minecraft: Bedrock Edition. .
 
 ## Поддерживаемые версии
 
 - 1.1.x
 - 1.16–1.26.30
-- 1.26.50 и 1.26.51
-
-## Запуск Neptune на Windows
-
-Установите совместимые с PocketMine PHP 8.3-бинарники в `bin/php` и запустите PowerShell в корне проекта:
-
-```powershell
-.\build.ps1
-.\start.ps1
-```
-
-Для отдельной папки данных передайте её путь: `.\start.ps1 -DataPath C:\neptune-data`.
+- 1.26.50 и 1.26.51 
 
 ## Запуск Neptune на Linux
 
