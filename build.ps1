@@ -23,6 +23,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $root 'vendor\autoload.php'))) {
         throw 'vendor is missing. Install Composer and run composer install --no-dev --prefer-dist --optimize-autoloader.'
     }
     & $composer.Source install --no-dev --prefer-dist --optimize-autoloader
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 & $Php -d phar.readonly=0 .\build-phar.php
