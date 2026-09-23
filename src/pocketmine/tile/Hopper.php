@@ -159,12 +159,16 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable
 					$smelting = $inv->getSmelting();
 
 					if ($smelting->isNull()) {
-						$inv->setSmelting($itemToAdd);
+						if (!$inv->setSmelting($itemToAdd)) {
+							continue;
+						}
 						$item->pop();
 						$this->inventory->setItem($i, $item);
 						return true;
-					} elseif ($smelting->equals($itemToAdd)) {
-						$inv->setSmelting($smelting->setCount($smelting->getCount() + 1));
+					} elseif ($smelting->equals($itemToAdd) && $smelting->getCount() < $smelting->getMaxStackSize()) {
+						if (!$inv->setSmelting($smelting->setCount($smelting->getCount() + 1))) {
+							continue;
+						}
 						$item->pop();
 						$this->inventory->setItem($i, $item);
 						return true;
@@ -173,12 +177,16 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable
 					$fuel = $inv->getFuel();
 
 					if ($fuel->isNull()) {
-						$inv->setFuel($itemToAdd);
+						if (!$inv->setFuel($itemToAdd)) {
+							continue;
+						}
 						$item->pop();
 						$this->inventory->setItem($i, $item);
 						return true;
-					} elseif ($fuel->equals($itemToAdd)) {
-						$inv->setFuel($fuel->setCount($fuel->getCount() + 1));
+					} elseif ($fuel->equals($itemToAdd) && $fuel->getCount() < $fuel->getMaxStackSize()) {
+						if (!$inv->setFuel($fuel->setCount($fuel->getCount() + 1))) {
+							continue;
+						}
 						$item->pop();
 						$this->inventory->setItem($i, $item);
 						return true;
