@@ -19,6 +19,21 @@ $temporary = $outputDirectory . DIRECTORY_SEPARATOR . 'Neptune-' . bin2hex(rando
 if (!is_dir($outputDirectory) && !mkdir($outputDirectory, 0777, true) && !is_dir($outputDirectory)) {
 	throw new RuntimeException('Unable to create build directory');
 }
+$archiveLock = fopen($output . '.lock', 'c+b');
+if ($archiveLock === false || !flock($archiveLock, LOCK_EX | LOCK_NB)) {
+	throw new RuntimeException("Cannot replace $output while it is in use");
+}
+if ($outputName === 'Neptune.phar') {
+	$serverLockPath = $root . DIRECTORY_SEPARATOR . 'server-data' . DIRECTORY_SEPARATOR . 'server.lock';
+	if (is_file($serverLockPath)) {
+		$serverLock = fopen($serverLockPath, 'rb');
+		if ($serverLock === false || !flock($serverLock, LOCK_EX | LOCK_NB)) {
+			throw new RuntimeException('Stop the running Neptune server before rebuilding Neptune.phar');
+		}
+		flock($serverLock, LOCK_UN);
+		fclose($serverLock);
+	}
+}
 $phar = new Phar($temporary, 0, 'Neptune.phar');
 $phar->startBuffering();
 

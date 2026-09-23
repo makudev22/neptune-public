@@ -243,6 +243,14 @@ JIT_WARNING
 	 */
 	function server()
 	{
+		$runningPhar = \Phar::running(false);
+		if ($runningPhar !== "") {
+			$archiveLock = fopen($runningPhar . ".lock", "c+b");
+			if ($archiveLock === false || !flock($archiveLock, LOCK_SH | LOCK_NB)) {
+				critical_error("Cannot start Neptune while its PHAR is being rebuilt.");
+				exit(1);
+			}
+		}
 		if (count($messages = check_platform_dependencies()) > 0) {
 			echo PHP_EOL;
 			$binary = version_compare(PHP_VERSION, "5.4") >= 0 ? PHP_BINARY : "unknown";
