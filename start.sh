@@ -1,10 +1,15 @@
 #!/usr/bin/env sh
 set -eu
 
+caller_dir=$(pwd -P)
 root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$root"
 
 php=${NEPTUNE_PHP:-}
+case "$php" in
+	""|/*) ;;
+	*) php="$caller_dir/$php" ;;
+esac
 if [ -z "$php" ]; then
 	for candidate in "$root/bin/php/php" "$root/bin/php7/bin/php" "$root/bin/php/bin/php"; do
 		if [ -x "$candidate" ]; then
@@ -26,4 +31,8 @@ if [ ! -f "$phar" ]; then
 fi
 
 data=${NEPTUNE_DATA:-"$root/server-data"}
+case "$data" in
+	/*) ;;
+	*) data="$caller_dir/$data" ;;
+esac
 exec "$php" "$phar" "--data=$data" "--plugins=$data/plugins" --settings.enable-dev-builds=true "$@"
